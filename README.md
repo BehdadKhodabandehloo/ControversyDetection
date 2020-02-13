@@ -3,10 +3,13 @@ in progressing ideas:
 - Prediction Controversy
 - Heterogeneous Analysis
 - Sentiment Analysis on Users
+
+Main Reference:
+" Quantifying Controversy on Social Media "
  
 Papers that Have been read until now:
-  - 
-  - 
+  - Community Interaciton and Conflict on the Web
+  - Political Discourse on Social Media: Echo Chambers, Gatekeepers, and the Price of Bipartisanship
   
  
 Papers that would be read:
