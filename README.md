@@ -25,5 +25,5 @@ Papers that would be read:
 # Related Lines of Research:
 - How topics operate as inputs to the twitter network structure and how it changes?
 Related Articles:
-"The Bursty Dynamics of the Twitter Information Network"
+- "The Bursty Dynamics of the Twitter Information Network"
 
