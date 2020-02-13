@@ -27,3 +27,7 @@ Papers that would be read:
 * Related Articles:
 - "The Bursty Dynamics of the Twitter Information Network"
 
+
+
+# Twitter Network Structure
+
