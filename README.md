@@ -1,8 +1,8 @@
 # ControversyDetection
 in progressing ideas:
- 1 - Prediction Controversy
- 2 - Heterogeneous Analysis
- 3 - Sentiment Analysis on Users
+- Prediction Controversy
+- Heterogeneous Analysis
+- Sentiment Analysis on Users
  
 Papers that Have been read until now:
   - 
