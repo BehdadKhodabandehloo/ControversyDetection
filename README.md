@@ -7,9 +7,14 @@ in progressing ideas:
 Main Reference:
 " Quantifying Controversy on Social Media "
  
+ 
+ 
+ 
 Papers that Have been read until now:
-  - Community Interaciton and Conflict on the Web
-  - Political Discourse on Social Media: Echo Chambers, Gatekeepers, and the Price of Bipartisanship
+  - Community Interaciton and Conflict on the Web (Behdad)
+  - Political Discourse on Social Media: Echo Chambers, Gatekeepers, and the Price of Bipartisanship (Mehrdad)
+  
+  
   
  
 Papers that would be read:
