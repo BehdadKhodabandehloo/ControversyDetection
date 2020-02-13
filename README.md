@@ -20,3 +20,7 @@ Papers that Have been read until now:
 Papers that would be read:
   - A Long-Term Analysis of Polarization on Twitter (Mehrdad)
   - Reducing Controversy by Connecting Opposing Views (Behdad)
+  
+  
+# Related Lines of Research:
+- How topics operate as inputs to the twitter network structure and how it changes?
