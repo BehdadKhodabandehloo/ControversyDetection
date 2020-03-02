@@ -1,8 +1,10 @@
 # ControversyDetection
-in progressing ideas:
+in progressing ideas for polarization quantifying:
 - Prediction Controversy
 - Heterogeneous Analysis
 - Sentiment Analysis on Users
+questions that we want to answer them:
+- how the polarization epidemy works in social media?(evolution of polarization network)
 
 Main Reference:
 " Quantifying Controversy on Social Media "
