@@ -16,13 +16,12 @@ Main Reference:
 Papers that Have been read until now:
   - Community Interaciton and Conflict on the Web (Behdad)
   - Political Discourse on Social Media: Echo Chambers, Gatekeepers, and the Price of Bipartisanship (Mehrdad)
-  
-  
-  
- 
-Papers that would be read:
   - A Long-Term Analysis of Polarization on Twitter (Mehrdad)
   - Reducing Controversy by Connecting Opposing Views (Behdad)
+  
+Papers that would be read:
+  - Network Structure and Community Evolution on Twitter: Human Behavior Change in Response to the 2011 Japanese Earthquake and Tsunami (Mehrdad)
+  -  The Bursty Dynamics of the Twitter Information Network (Behdad)
   
   
 # Related Lines of Research:
