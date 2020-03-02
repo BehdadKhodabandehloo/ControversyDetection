@@ -22,7 +22,10 @@ Papers that Have been read until now:
 Papers that would be read:
   - Network Structure and Community Evolution on Twitter: Human Behavior Change in Response to the 2011 Japanese Earthquake and Tsunami (Mehrdad)
   -  The Bursty Dynamics of the Twitter Information Network (Behdad)
-  
+ 
+Task that would be done:
+  -  graph partitioning (Behdad)
+  -  RWC and Betweeness measure develop (Mehrdad)
   
 # Related Lines of Research:
 - How topics operate as inputs to the twitter network structure and how it changes?
