@@ -18,10 +18,10 @@ Papers that Have been read until now:
   - Political Discourse on Social Media: Echo Chambers, Gatekeepers, and the Price of Bipartisanship (Mehrdad)
   - A Long-Term Analysis of Polarization on Twitter (Mehrdad)
   - Reducing Controversy by Connecting Opposing Views (Behdad)
-  
-Papers that would be read:
   - Network Structure and Community Evolution on Twitter: Human Behavior Change in Response to the 2011 Japanese Earthquake and Tsunami (Mehrdad)
   -  The Bursty Dynamics of the Twitter Information Network (Behdad)
+  
+Papers that would be read:
  
 Task that would be done:
   -  graph partitioning (Behdad)
