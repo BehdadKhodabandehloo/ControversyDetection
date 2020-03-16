@@ -26,6 +26,8 @@ Papers that would be read:
 Task that would be done:
   -  graph partitioning (Behdad)
   -  RWC and Betweeness measure develop (Mehrdad)
+  -  datasets analysis (Behdad & Mehrdad)
+  -  writing questions (Behdad & Mehrdad)
   
 # Related Lines of Research:
 - How topics operate as inputs to the twitter network structure and how it changes?
