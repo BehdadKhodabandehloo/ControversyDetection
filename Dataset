@@ -22,3 +22,42 @@ Non-conteroversial Topics:
 - #jurassicworld
 - #wcw
 - #nationalkissingday
+
+Dataset Description:
+Columns:
+'in_reply_to_status_id'
+'place'
+'in_reply_to_status_id_str'
+'in_reply_to_user_id'
+'created_at'
+'lang'
+'user'
+'geo'
+'contributors'
+'display_text_range'
+'coordinates'
+'full_text'
+'in_reply_to_screen_name'
+'is_quote_status'
+'source'
+'favorited'
+'retweet_count'
+'truncated'
+'entities'
+'in_reply_to_user_id_str'
+'retweeted'
+'retweeted_status'
+'id'
+'favorite_count'
+'id_str'
+'extended_entities'
+'possibly_sensitive'
+'quoted_status_id'
+'quoted_status_permalink'
+'quoted_status_id_str'
+'quoted_status'
+'withheld_in_countries'
+'withheld_scope'
+
+
+
