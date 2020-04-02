@@ -24,10 +24,8 @@ Papers that Have been read until now:
 Papers that would be read:
  
 Task that would be done:
-  -  graph partitioning (Behdad)
-  -  RWC and Betweeness measure develop (Mehrdad)
-  -  datasets analysis (Behdad & Mehrdad)
-  -  writing questions (Behdad & Mehrdad)
+  -  RWC measure and refactoring codes (Behdad)
+  -  Betweeness measure and Overleaf (Mehrdad)
   
 # Related Lines of Research:
 - How topics operate as inputs to the twitter network structure and how it changes?
