@@ -35,9 +35,3 @@ class Data(object):
         Graph = pd.DataFrame(Graph)
         return Graph
         
-
-# =============================================================================
-# 
-# =============================================================================
-data = Data(dataset)
-r = data.Retweet_Graph_Building()
