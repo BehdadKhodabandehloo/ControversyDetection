@@ -1,7 +1,5 @@
 
-"""
-@author: Behdad Khodabandehloo
-"""
+
 import networkx as nx
 import pandas as pd
 
