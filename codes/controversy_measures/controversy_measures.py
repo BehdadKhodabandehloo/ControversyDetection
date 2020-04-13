@@ -6,24 +6,16 @@ import random
 import numpy as np
 
 
-#seperate edge
-def betweenness_centrality_controversy(graph, seprated_graph):
-	betweeness_edges = nx.algorithms.centrality.edge_betweenness_centrality(graph)
+def betweenness_centrality_controversy(graph, seprated_graph, num_samples=10000):
+	betweeness_edges = nx.algorithms.centrality.edge_betweenness_centrality(graph, k=len(graph.nodes))
 	cut_edges, rest_edges = seprate_graph_with_betweenness(seprated_graph, betweeness_edges)
 	pdf_cut_edges = stats.norm.pdf(list(cut_edges.values()))
 	pdf_rest_edges = stats.norm.pdf(list(betweeness_edges.values()))
-	rsamples_pdf_cut_edges = random.choices(pdf_cut_edges, k=10000)
-	rsamples_pdf_rest_edges = random.choices(pdf_rest_edges, k=10000)
-	kl = kl_divergence(rsamples_pdf_cut_edges, rsamples_pdf_rest_edges)
+	rsamples_pdf_cut_edges = random.choices(pdf_cut_edges, k=num_samples)
+	rsamples_pdf_rest_edges = random.choices(pdf_rest_edges, k=num_samples)
 	kl = stats.entropy(rsamples_pdf_cut_edges, rsamples_pdf_rest_edges)
-	print(kl)
-	print(1/(np.exp(kl)))
 	BCC = 1 - (1/np.exp(kl))
-	print(BCC)
-
-#calculate kl divergence
-def kl_divergence(p, q):
-	return sum(p[i] * log2(p[i]/q[i]) for i in range(len(p)))
+	return BCC
 
 
 def seprate_graph_with_betweenness(seprated_graph, betweeenes_edges):
@@ -43,8 +35,3 @@ def seprate_graph_with_betweenness(seprated_graph, betweeenes_edges):
 			else:
 				cut_edges[betweeenes_edge] = betweeenes_edges[betweeenes_edge]
 	return cut_edges, rest_edges
-
-if __name__ == '__main__':
-	graph = nx.karate_club_graph()
-	seprated_graph = nxmetis.partition(graph, 2)
-	betweenness_centrality_controversy(graph, seprated_graph)
