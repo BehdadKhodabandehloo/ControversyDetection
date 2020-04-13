@@ -20,12 +20,16 @@ Papers that Have been read until now:
   - Reducing Controversy by Connecting Opposing Views (Behdad)
   - Network Structure and Community Evolution on Twitter: Human Behavior Change in Response to the 2011 Japanese Earthquake and Tsunami (Mehrdad)
   -  The Bursty Dynamics of the Twitter Information Network (Behdad)
+  -  Quantifying Polarization on Twitter: The Kavanaugh Nomination (Mehrdad)
+  -  Content and Network Dynamics Behind Egyptian Political Polarization on Twitter (Behdad)
   
 Papers that would be read:
+  - stance evolution (Behdad)
+  - analyzing polarization (Mehrdad)
  
 Task that would be done:
-  -  RWC measure and refactoring codes (Behdad)
-  -  Betweeness measure and Overleaf (Mehrdad)
+  -  RWC measure(Behdad)
+  -  Dynamic Graph Building(Mehrdad)
   
 # Related Lines of Research:
 - How topics operate as inputs to the twitter network structure and how it changes?
