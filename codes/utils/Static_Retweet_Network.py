@@ -8,10 +8,10 @@ def Static_Retweet_graph_Building(Data):
     Original_Username = [] # username of who tweet
     Retweeting_Username = [] # user name of who retweet
     
-    for i in range(len(baltimore_data)):
-        if type(baltimore_data['retweeted_status'][i]) == dict:
-            Original_Username.append(baltimore_data['retweeted_status'][i]['user']['screen_name'])
-            Retweeting_Username.append(baltimore_data['user'][i]['screen_name'])
+    for i in range(len(Data)):
+        if type(Data['retweeted_status'][i]) == dict:
+            Original_Username.append(Data['retweeted_status'][i]['user']['screen_name'])
+            Retweeting_Username.append(Data['user'][i]['screen_name'])
             
     edges_to_add = []   
     for j in range(len(Original_Username)):
