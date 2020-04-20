@@ -7,9 +7,9 @@ in progressing ideas for polarization quantifying:
 questions that we want to answer them:
 - how the polarization epidemy works in social media?(evolution of polarization network)
 
+
 Main Reference:
 " Quantifying Controversy on Social Media "
- 
  
  
  
@@ -22,21 +22,16 @@ Papers that Have been read until now:
   -  The Bursty Dynamics of the Twitter Information Network (Behdad)
   -  Quantifying Polarization on Twitter: The Kavanaugh Nomination (Mehrdad)
   -  Content and Network Dynamics Behind Egyptian Political Polarization on Twitter (Behdad)
+  -  Analyzing Polarization of Social Media Users and News Sites during Political Campaigns (Mehrdad)
+  -  Stance Evolution and Twitter Interactions in an Italian Political Debate (Behdad)
   
 Papers that would be read:
-  - stance evolution (Behdad)
-  - analyzing polarization (Mehrdad)
+  - (Behdad)
+  - (Mehrdad)
  
 Task that would be done:
   -  RWC measure(Behdad)
-  -  Dynamic Graph Building(Mehrdad)
+  -  (Mehrdad)
   
 # Related Lines of Research:
 - How topics operate as inputs to the twitter network structure and how it changes?
-* Related Articles:
-- "The Bursty Dynamics of the Twitter Information Network"
-
-
-
-# Twitter Network Structure
-
