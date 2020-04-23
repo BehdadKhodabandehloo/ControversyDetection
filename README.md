@@ -30,8 +30,8 @@ Papers that would be read:
   - (Mehrdad)
  
 Task that would be done:
-  -  RWC measure(Behdad)
-  -  (Mehrdad)
+  -  RWC measure, mention graph building(Behdad)
+  -  sentiment module, reply graph building(Mehrdad)
   
 # Related Lines of Research:
 - How topics operate as inputs to the twitter network structure and how it changes?
