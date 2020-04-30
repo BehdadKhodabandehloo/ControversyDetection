@@ -35,3 +35,9 @@ Task that would be done:
   
 # Related Lines of Research:
 - How topics operate as inputs to the twitter network structure and how it changes?
+
+# Conferences
+- Complex Networks (submission deadline: 02/september = 12/shahrivar)
+- SNAMS- Social Networks Analysis, Management and Security (submission deadline: 10/july = 20/tir)
+- SocInfo- Social Informatics (submission deadline: 29/May = 9/khordad)
+- ICWSM(AAAI)- Web and Social Media 2021 (submission deadline: 15/september = 25/shahrivar)
