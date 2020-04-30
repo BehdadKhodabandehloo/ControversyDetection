@@ -4,7 +4,32 @@ from data_loader import Dataloader
 import copy
 
 
-def static_retweet_graph(data, Graph=None):
+def graph_maker(heads, tails, graph=None):
+    # graph initiate
+    if graph is None:
+        graph = nx.Graph()
+    for i in range(len(heads)):
+        if graph.has_edge(heads[i], tails[i]):
+            graph[heads[i]][tails[i]]['weight'] += 1
+        else:
+            graph.add_edges_from([[heads[i], tails[i]]], weight=1)
+    return graph
+
+
+def static_reply_graph(data, graph=None):
+    orginal_usernames = []
+    reply_usernames = []
+
+    for item in data:
+        if 'in_reply_to_user_id' in item:
+            if item['in_reply_to_user_id'] is not None:
+                orginal_usernames.append(item['in_reply_to_user_id'])
+                reply_usernames.append(item['user']['id'])
+
+    return graph_maker(orginal_usernames, reply_usernames, graph)
+
+
+def static_retweet_graph(data, graph=None):
     Original_Username = [] # username of who tweet
     Retweeting_Username = [] # user name of who retweet
     
@@ -14,23 +39,7 @@ def static_retweet_graph(data, Graph=None):
                 Original_Username.append(data[i]['retweeted_status']['user']['screen_name'])
                 Retweeting_Username.append(data[i]['user']['screen_name'])
             
-    edges_to_add = []   
-    for j in range(len(Original_Username)):
-        edges_to_add.append((Retweeting_Username[j], Original_Username[j]))
-            
-    # Remove Duplicate Elements
-    edges_list = list(set(edges_to_add))
-
-    if Graph is None:
-        Graph = nx.Graph()
-    
-    # Adding Weights to Graph
-    for i in range(len(edges_list)):
-        if Graph.has_edge(edges_list[i][0], edges_list[i][1]):
-            Graph[edges_list[i][0]][edges_list[i][1]]['weight'] += edges_to_add.count(edges_list[i])
-        else:
-            Graph.add_edges_from([edges_list[i]], weight=edges_to_add.count(edges_list[i]))
-    return Graph
+    return graph_maker(Original_Username, Retweeting_Username, graph)
 
 
 def dynamic_retweet_graph(data, discrete_bin=3600):
@@ -67,12 +76,12 @@ if __name__ == '__main__':
     dataloader = Dataloader('/root/tweets_dataset')
     dataset = dataloader.load_files(file)
     print('size of dataset = %s' % len(dataset))
-    dygraphs = dynamic_retweet_graph(dataset)
-    print(dygraphs.keys())
-    count = 1
-    for key, graph in dygraphs.items():
-        print('%s. graph (%s) --> nodes = %s, edges = %s' % (count, key, len(graph.nodes), len(graph.edges)))
-        count += 1
+    graph = static_reply_graph(dataset)
+    print('reply graph --> nodes = %s, edges = %s' % (len(graph.nodes), len(graph.edges)))
+    # count = 1
+    # for key, graph in dygraphs.items():
+    #     print('%s. graph (%s) --> nodes = %s, edges = %s' % (count, key, len(graph.nodes), len(graph.edges)))
+    #     count += 1
 
 # 1. graph (1430020362_1430023962) --> nodes = 11, edges = 9
 # 2. graph (1430023962_1430027562) --> nodes = 15, edges = 13
@@ -123,3 +132,5 @@ if __name__ == '__main__':
 # 47. graph (1430185962_1430189562) --> nodes = 27128, edges = 36162
 # 48. graph (1430189562_1430193162) --> nodes = 47389, edges = 65672
 # 49. graph (1430193162_1430196762) --> nodes = 47891, edges = 66431
+
+# reply graph --> nodes = 3843, edges = 3335
