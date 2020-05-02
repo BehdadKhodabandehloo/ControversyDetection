@@ -15,33 +15,7 @@ def graph_maker(heads, tails, graph=None):
             graph.add_edges_from([[heads[i], tails[i]]], weight=1)
     return graph
 
-def static_mention_graph_with_sentiment(data):
-    
-    # Tweets (with & without mentions)
-    df = data.copy()  
-    l = []
-    for i in range(len(df)):
-        if (type(df.iloc[i]['retweeted_status']) == dict) or (df.iloc[i]['in_reply_to_status_id'] > 0):
-            l.append(i)
-    tweets = df.drop(l)
-    
-    # Index of Tweets
-    tweets_index = tweets.index.values
 
-    # Initialize Mention Graph
-    graph = nx.DiGraph()
-    
-    # Adding Edges of Mention Graph
-    for index in tweets_index:
-        if len(tweets.loc[index]['entities']['user_mentions']) != 0:
-            for k in range(len(tweets.loc[index]['entities']['user_mentions'])):
-                graph.add_edge(tweets.loc[index]['user']['screen_name'],
-                                   tweets.loc[index]['entities']['user_mentions'][k]['screen_name'],
-                                   index = index,
-                                   text = tweets.loc[index]['full_text'],
-                                   weight = 1)
-    
-    return Graph
     
 def static_reply_graph(data, graph=None):
     orginal_usernames = []
