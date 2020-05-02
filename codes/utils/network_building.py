@@ -15,7 +15,7 @@ def graph_maker(heads, tails, graph=None):
             graph.add_edges_from([[heads[i], tails[i]]], weight=1)
     return graph
 
-def static_mention_graph(data):
+def static_mention_graph_with_sentiment(data):
     
     # Tweets (with & without mentions)
     df = data.copy()  
@@ -62,8 +62,7 @@ def static_mention_graph(data, graph=None):
     mentioned_usernames = []
     
     for item in data:
-        if 'retweeted_status' in item:
-            if item['retweeted_status'] is None:
+        if 'retweeted_status' not in item:
                 for k in range(len(item['entities']['user_mentions'])):
                     original_usernames.append(item['user']['screen_name'])
                     mentioned_usernames.append(item['entities']['user_mentions'][k]['screen_name'])
