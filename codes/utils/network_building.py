@@ -15,30 +15,30 @@ def graph_maker(heads, tails, graph=None):
             graph.add_edges_from([[heads[i], tails[i]]], weight=1)
     return graph
 
-def Static_Mention_Graph(data):
+def static_mention_graph(data):
     
     # Tweets (with & without mentions)
     df = data.copy()  
-    L = []
+    l = []
     for i in range(len(df)):
         if (type(df.iloc[i]['retweeted_status']) == dict) or (df.iloc[i]['in_reply_to_status_id'] > 0):
-            L.append(i)
-    Tweets = df.drop(L)
+            l.append(i)
+    tweets = df.drop(l)
     
     # Index of Tweets
-    Tweets_Index = Tweets.index.values
+    tweets_index = tweets.index.values
 
     # Initialize Mention Graph
-    Graph = nx.DiGraph()
+    graph = nx.DiGraph()
     
     # Adding Edges of Mention Graph
-    for index in Tweets_Index:
-        if len(Tweets.loc[index]['entities']['user_mentions']) != 0:
-            for k in range(len(Tweets.loc[index]['entities']['user_mentions'])):
-                Graph.add_edge(Tweets.loc[index]['user']['screen_name'],
-                                   Tweets.loc[index]['entities']['user_mentions'][k]['screen_name'],
-                                   Index = index,
-                                   Text = Tweets.loc[index]['full_text'],
+    for index in tweets_index:
+        if len(tweets.loc[index]['entities']['user_mentions']) != 0:
+            for k in range(len(tweets.loc[index]['entities']['user_mentions'])):
+                graph.add_edge(tweets.loc[index]['user']['screen_name'],
+                                   tweets.loc[index]['entities']['user_mentions'][k]['screen_name'],
+                                   index = index,
+                                   text = tweets.loc[index]['full_text'],
                                    weight = 1)
     
     return Graph
