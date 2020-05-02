@@ -57,16 +57,16 @@ def static_reply_graph(data, graph=None):
 
 
 def static_retweet_graph(data, graph=None):
-    Original_Username = [] # username of who tweet
-    Retweeting_Username = [] # user name of who retweet
+    original_username = [] # username of who tweet
+    retweeting_username = [] # user name of who retweet
     
     for i in range(len(data)):
         if 'retweeted_status' in data[i]:
             if type(data[i]['retweeted_status']) == dict:
-                Original_Username.append(data[i]['retweeted_status']['user']['screen_name'])
-                Retweeting_Username.append(data[i]['user']['screen_name'])
+                original_Username.append(data[i]['retweeted_status']['user']['screen_name'])
+                retweeting_Username.append(data[i]['user']['screen_name'])
             
-    return graph_maker(Original_Username, Retweeting_Username, graph)
+    return graph_maker(original_Username, retweeting_Username, graph)
 
 
 def dynamic_retweet_graph(data, discrete_bin=3600):
