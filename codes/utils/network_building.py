@@ -56,6 +56,21 @@ def static_reply_graph(data, graph=None):
     return graph_maker(orginal_usernames, reply_usernames, graph)
 
 
+def static_mention_graph(data, graph=None):
+    
+    original_usernames = []
+    mentioned_usernames = []
+    
+    for item in data:
+        if 'retweeted_status' in item:
+            if item['retweeted_status'] is None:
+                for k in range(len(item['entities']['user_mentions'])):
+                    original_usernames.append(item['user']['screen_name'])
+                    mentioned_usernames.append(item['entities']['user_mentions'][k]['screen_name'])
+                    
+    return graph_maker(original_usernames, mentioned_usernames, graph)
+    
+    
 def static_retweet_graph(data, graph=None):
     original_username = [] # username of who tweet
     retweeting_username = [] # user name of who retweet
