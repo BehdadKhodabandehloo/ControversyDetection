@@ -53,6 +53,22 @@ def static_mention_graph(data, graph=None):
                     mentioned_usernames.append(item['entities']['user_mentions'][k]['screen_name'])
                     
     return graph_maker(mentioned_usernames, original_usernames, graph)
+
+
+def static_mention_graph_with_sentiment(data, graph=None):
+    
+    original_usernames = [] #tails
+    mentioned_usernames = [] #Heads
+    texts = []
+    
+    for item in data:
+        if 'retweeted_status' not in item:
+            for k in range(len(item['entities']['user_mentions'])):
+                original_usernames.append(item['user']['screen_name'])
+                mentioned_usernames.append(item['entities']['user_mentions'][k]['screen_name'])
+                texts.append([[item['full_text']]])
+                         
+    return graph_maker_with_sentiment(mentioned_usernames, original_usernames, texts, graph)
     
     
 def static_retweet_graph(data, graph=None):
