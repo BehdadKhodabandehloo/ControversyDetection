@@ -41,7 +41,7 @@ def static_mention_graph(data, graph=None):
                     original_usernames.append(item['user']['screen_name'])
                     mentioned_usernames.append(item['entities']['user_mentions'][k]['screen_name'])
                     
-    return graph_maker(original_usernames, mentioned_usernames, graph)
+    return graph_maker(mentioned_usernames, original_usernames, graph)
     
     
 def static_retweet_graph(data, graph=None):
@@ -51,10 +51,10 @@ def static_retweet_graph(data, graph=None):
     for i in range(len(data)):
         if 'retweeted_status' in data[i]:
             if type(data[i]['retweeted_status']) == dict:
-                original_Username.append(data[i]['retweeted_status']['user']['screen_name'])
-                retweeting_Username.append(data[i]['user']['screen_name'])
+                original_username.append(data[i]['retweeted_status']['user']['screen_name'])
+                retweeting_username.append(data[i]['user']['screen_name'])
             
-    return graph_maker(original_Username, retweeting_Username, graph)
+    return graph_maker(original_username, retweeting_username,  graph)
 
 
 def dynamic_retweet_graph(data, discrete_bin=3600):
