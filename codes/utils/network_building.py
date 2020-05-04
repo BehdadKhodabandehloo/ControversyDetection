@@ -72,12 +72,11 @@ def static_mention_graph_with_sentiment(data, graph=None):
     
     
 def static_retweet_graph(data, graph=None):
-    original_username = [] # username of who tweet
-    retweeting_username = [] # user name of who retweet
+    original_username = [] # heads
+    retweeting_username = [] # tails
     
-    for i in range(len(data)):
-        if 'retweeted_status' in data[i]:
-            if type(data[i]['retweeted_status']) == dict:
+    for item in data:
+        if 'retweeted_status' in item:
                 original_username.append(data[i]['retweeted_status']['user']['screen_name'])
                 retweeting_username.append(data[i]['user']['screen_name'])
             
