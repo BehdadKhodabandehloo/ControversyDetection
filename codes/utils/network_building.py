@@ -77,8 +77,8 @@ def static_retweet_graph(data, graph=None):
     
     for item in data:
         if 'retweeted_status' in item:
-                original_username.append(data[i]['retweeted_status']['user']['screen_name'])
-                retweeting_username.append(data[i]['user']['screen_name'])
+                original_username.append(item['retweeted_status']['user']['screen_name'])
+                retweeting_username.append(item['user']['screen_name'])
             
     return graph_maker(original_username, retweeting_username,  graph)
 
