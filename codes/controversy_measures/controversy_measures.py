@@ -36,14 +36,14 @@ def seprate_graph_with_betweenness(seprated_graph, betweeenes_edges):
 				cut_edges[betweeenes_edge] = betweeenes_edges[betweeenes_edge]
 	return cut_edges, rest_edges
 
-
+"""
 if __name__ == '__main__':
     file = 'baltimore_data'
     dataloader = Dataloader('path)
     dataset = dataloader.load_files(file, 10000)
     print(len(dataset))
     print(dataset[0])
-
+"""
 
 def roulette_wheel_selection(List):
     L = []
@@ -55,7 +55,7 @@ def roulette_wheel_selection(List):
             return i
 			    
 			    
-graph = static_retweet_graph(dataset)
+#graph = static_retweet_graph(dataset)
 			    
 def random_walk_conteroversy(graph):
    
@@ -71,8 +71,8 @@ def random_walk_conteroversy(graph):
         if int(sum(adjacency[:,i])) == 0:
             adjacency[:,i] = (1/size)*np.ones((size,1)).reshape(size)
         
-        d = 0.85
-        modified_adj_matrix =   d*adjacency + (1/size)*(1-d)*np.ones((size,size))  
+    d = 0.85
+    modified_adj_matrix =   d*adjacency + (1/size)*(1-d)*np.ones((size,size))  
         
         
     # Graph partitioning
@@ -118,7 +118,7 @@ def random_walk_conteroversy(graph):
     # RWC
     non_saparate = 0
     separate = 0
-    iteration = 100
+    iteration = 1000
     for i in range(iteration):
         # randomly choose a node
         initial_node = random.choice(low_degree_nodes)
