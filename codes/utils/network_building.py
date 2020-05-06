@@ -15,7 +15,20 @@ def graph_maker(heads, tails, graph=None):
             graph.add_edges_from([[heads[i], tails[i]]], weight=1)
     return graph
 
-def graph_maker_with_sentiment(heads, tails, texts, graph=None):
+
+def directed_graph_maker_without_Sentiment(heads, tails, graph=None):
+    # graph initiate
+    if graph is None:
+        graph = nx.DiGraph()
+    for i in range(len(heads)):
+        if graph.has_edge(tails[i], heads[i]):
+            graph[tails[i]][heads[i]]['weight'] += 1
+        else:
+            graph.add_edges_from([[tails[i], heads[i]]], weight=1)
+    return graph
+
+
+def directed_graph_maker_with_sentiment(heads, tails, texts, graph=None):
     # graph initiate
     if graph is None:
         graph = nx.DiGraph()
