@@ -35,3 +35,110 @@ def seprate_graph_with_betweenness(seprated_graph, betweeenes_edges):
 			else:
 				cut_edges[betweeenes_edge] = betweeenes_edges[betweeenes_edge]
 	return cut_edges, rest_edges
+
+
+if __name__ == '__main__':
+    file = 'baltimore_data'
+    dataloader = Dataloader('path)
+    dataset = dataloader.load_files(file, 10000)
+    print(len(dataset))
+    print(dataset[0])
+
+
+def roulette_wheel_selection(List):
+    L = []
+    r = random.random()
+    print(r)
+    for i in range(len(List)):
+        L.append(List[i])
+        if r <= sum(L):
+            return i
+        
+        
+def random_walk_conteroversy(dataset):
+    
+    graph = static_retweet_graph(dataset)
+    
+    # Obtain Adjacency Matrix
+    A = nx.adjacency_matrix(graph)
+    adj_matrix = np.transpose(A.todense())    
+
+    # Modify Adjacency Matrix
+    adjacency = np.copy(adj_matrix)
+    adjacency = adjacency.astype(float)
+    size = np.size(adjacency,1)
+    for i in range(size):
+        if int(sum(adjacency[:,i])) == 0:
+            adjacency[:,i] = (1/size)*np.ones((size,1)).reshape(size)
+        
+        d = 0.85
+        modified_adj_matrix =   d*adjacency + (1/size)*(1-d)*np.ones((size,size))  
+        
+        
+    # Graph partitioning
+    g = graph
+    h = g.to_undirected()
+    partitions = nxmetis.partition(h, 2)    
+    common_member(partitions[1][0],partitions[1][1])
+    
+    # whole graph
+    all_nodes = list(graph.nodes())
+    all_nodes_out_degree = []
+    all_nodes_in_degree = []
+    for item in all_nodes:
+        all_nodes_out_degree.append(graph.out_degree()[item])
+        all_nodes_in_degree.append(graph.in_degree()[item])
+    
+    # left side
+    left_side_nodes = partitions[1][0]
+    left_side_nodes_out_degree = []
+    left_side_nodes_in_degree = []
+    for item in left_side_nodes:
+        left_side_nodes_out_degree.append(graph.out_degree()[item])
+        left_side_nodes_in_degree.append(graph.in_degree()[item])
+    
+    # right side
+    right_side_nodes = partitions[1][1]
+    right_side_nodes_out_degree = []
+    right_side_nodes_in_degree = []
+    for item in right_side_nodes:
+        right_side_nodes_out_degree.append(graph.out_degree()[item])
+        right_side_nodes_in_degree.append(graph.in_degree()[item])
+        
+    # list of high degree nodes
+    sorted_degrees = sorted(graph.degree, key=lambda x: x[1], reverse=True)
+    high_degree_nodes = []
+    for item in sorted_degrees[0:int(0.02*len(sorted_degrees))]:
+        high_degree_nodes.append(item[0])
+        
+    
+    # list of low degree nodes
+    low_degree_nodes = [x for x in all_nodes if x not in high_degree_nodes]
+    
+    # RWC
+    non_saparate = 0
+    separate = 0
+    iteration = 100
+    for i in range(iteration):
+        # randomly choose a node
+        initial_node = random.choice(low_degree_nodes)
+        node = initial_node
+        #node_neighbor_list = [n for n in graph.successors(node)]
+        while node not in high_degree_nodes:
+            index = all_nodes.index(node)
+            neighbor_index = roulette_wheel_selection(list(modified_adj_matrix[:,index]))
+            node = all_nodes[neighbor_index]
+            if node in high_degree_nodes:
+                high_degree_node = node
+        if (initial_node in left_side_nodes) and (high_degree_node in left_side_nodes):
+            separate += 1
+        if (initial_node in right_side_nodes) and (high_degree_node in right_side_nodes):
+            separate += 1
+        if (initial_node in right_side_nodes) and (high_degree_node in left_side_nodes):
+            non_saparate += 1
+        if (initial_node in left_side_nodes) and (high_degree_node in right_side_nodes):
+            non_saparate += 1
+        
+    rwc_score = separate/iteration
+
+    return rwc_score
