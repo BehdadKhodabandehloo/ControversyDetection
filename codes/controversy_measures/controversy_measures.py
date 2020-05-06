@@ -53,13 +53,13 @@ def roulette_wheel_selection(List):
         L.append(List[i])
         if r <= sum(L):
             return i
-        
-        
-def random_walk_conteroversy(dataset):
-    
-    graph = static_retweet_graph(dataset)
-    
-    # Obtain Adjacency Matrix
+			    
+			    
+graph = static_retweet_graph(dataset)
+			    
+def random_walk_conteroversy(graph):
+   
+    # Adjacency Matrix
     A = nx.adjacency_matrix(graph)
     adj_matrix = np.transpose(A.todense())    
 
