@@ -31,7 +31,7 @@ Papers that would be read:
  
 Task that would be done:
   -  RWC measure, mention graph building, dataset analysis(Behdad)
-  -  [sentiment module](https://github.com/MarionVltt/Sentiment-analysis), dynamic graph for reply and mention(Mehrdad)
+  -  [sentiment module](https://github.com/amaiya/ktrain), dynamic graph for reply and mention(Mehrdad)
   
 # Related Lines of Research:
 - How topics operate as inputs to the twitter network structure and how it changes?
