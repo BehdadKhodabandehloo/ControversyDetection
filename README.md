@@ -26,8 +26,8 @@ Papers that Have been read until now:
   -  Stance Evolution and Twitter Interactions in an Italian Political Debate (Behdad)
   
 Papers that would be read:
-  - (Behdad)
-  - (Mehrdad)
+  - Current State of Text Sentiment Analysis from Opinion to Emotion Mining(Behdad)
+  - Current State of Text Sentiment Analysis from Opinion to Emotion Mining(Mehrdad)
  
 Task that would be done:
   -  RWC measure, mention graph building, dataset analysis(Behdad)
