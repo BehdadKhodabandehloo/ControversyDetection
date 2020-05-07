@@ -1,16 +1,6 @@
 # ControversyDetection
-in progressing ideas for polarization quantifying:
-- Prediction Controversy
-- Heterogeneous Analysis
-- Sentiment Analysis on Users(add sentiment to weight of edges in mention graph)
-
-questions that we want to answer them:
-- how the polarization epidemy works in social media?(evolution of polarization network)
-
-
 Main Reference:
 " Quantifying Controversy on Social Media "
- 
  
  
 Papers that Have been read until now:
@@ -30,11 +20,15 @@ Papers that would be read:
   - Current State of Text Sentiment Analysis from Opinion to Emotion Mining(Mehrdad)
  
 Task that would be done:
-  -  RWC measure, mention graph building, dataset analysis(Behdad)
-  -  [sentiment module](https://github.com/amaiya/ktrain), dynamic graph for reply and mention(Mehrdad)
+  -  Refactoring(Behdad)
+  -  [sentiment module](https://github.com/amaiya/ktrain), (Mehrdad)
   
-# Related Lines of Research:
-- How topics operate as inputs to the twitter network structure and how it changes?
+# Future Ideas:
+in progressing ideas for polarization quantifying:
+- Prediction Controversy
+- Heterogeneous Analysis
+- Sentiment Analysis on Users(add sentiment to weight of edges in mention graph)
+- Graph Prediction
 
 # Conferences
 - [Complex Networks](https://www.complexnetworks.org/) (submission deadline: 02/september = 12/shahrivar)
