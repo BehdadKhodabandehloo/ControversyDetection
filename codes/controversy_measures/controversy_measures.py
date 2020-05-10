@@ -58,8 +58,12 @@ def roulette_wheel_selection(List):
 
 
 # graph = static_retweet_graph(dataset)
+# Graph partitioning
+g = graph
+h = g.to_undirected()
+partitions = nxmetis.partition(h, 2)
 
-def random_walk_conteroversy(graph):
+def random_walk_conteroversy(graph, partitions, iterations):
     # Adjacency Matrix
     A = nx.adjacency_matrix(graph)
     adj_matrix = np.transpose(A.todense())
@@ -76,11 +80,10 @@ def random_walk_conteroversy(graph):
     modified_adj_matrix = d * adjacency + (1 / size) * (1 - d) * np.ones((size, size))
 
     # Graph partitioning
-    g = graph
-    h = g.to_undirected()
-    partitions = nxmetis.partition(h, 2)
-    common_member(partitions[1][0], partitions[1][1])
-
+    # g = graph
+    # h = g.to_undirected()
+    # partitions = nxmetis.partition(h, 2)
+    
     # whole graph
     all_nodes = list(graph.nodes())
     all_nodes_out_degree = []
@@ -117,8 +120,7 @@ def random_walk_conteroversy(graph):
     # RWC
     non_saparate = 0
     separate = 0
-    iteration = 1000
-    for i in range(iteration):
+    for i in range(iterations):
         # randomly choose a node
         initial_node = random.choice(low_degree_nodes)
         node = initial_node
@@ -138,6 +140,6 @@ def random_walk_conteroversy(graph):
         if (initial_node in left_side_nodes) and (high_degree_node in right_side_nodes):
             non_saparate += 1
 
-    rwc_score = separate / iteration
+    rwc_score = separate / iterations
 
     return rwc_score
