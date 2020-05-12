@@ -4,18 +4,6 @@ from data_loader import Dataloader
 import copy
 
 
-def graph_maker(heads, tails, graph=None):
-    # graph initiate
-    if graph is None:
-        graph = nx.Graph()
-    for i in range(len(heads)):
-        if graph.has_edge(heads[i], tails[i]):
-            graph[heads[i]][tails[i]]['weight'] += 1
-        else:
-            graph.add_edges_from([[heads[i], tails[i]]], weight=1)
-    return graph
-
-
 def graph_maker(heads, tails, texts, graph=None):
     # graph initiate
     if graph is None:
