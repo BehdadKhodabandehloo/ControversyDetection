@@ -63,15 +63,16 @@ def static_mention_graph(data, sentiment, graph=None):
     
     
 def static_retweet_graph(data, graph=None):
-    original_username = [] # heads
-    retweeting_username = [] # tails
+    heads = []
+    tails = []
+    texts = None
     
     for item in data:
         if 'retweeted_status' in item:
-                original_username.append(item['retweeted_status']['user']['screen_name'])
-                retweeting_username.append(item['user']['screen_name'])
+                heads.append(item['retweeted_status']['user']['screen_name'])
+                tails.append(item['user']['screen_name'])
             
-    return graph_maker(original_username, retweeting_username,  graph)
+    return graph_maker(heads, tails, texts, graph)
 
 
 def dynamic_graph(data, graph_type='retweet', discrete_bin=3600):
