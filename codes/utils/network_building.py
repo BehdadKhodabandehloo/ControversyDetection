@@ -16,30 +16,26 @@ def graph_maker(heads, tails, graph=None):
     return graph
 
 
-def directed_graph_maker_without_Sentiment(heads, tails, graph=None):
+def graph_maker(heads, tails, texts, graph=None):
     # graph initiate
     if graph is None:
         graph = nx.DiGraph()
-    for i in range(len(heads)):
-        if graph.has_edge(tails[i], heads[i]):
-            graph[tails[i]][heads[i]]['weight'] += 1
-        else:
-            graph.add_edges_from([[tails[i], heads[i]]], weight=1)
-    return graph
-
-
-def directed_graph_maker_with_sentiment(heads, tails, texts, graph=None):
-    # graph initiate
-    if graph is None:
-        graph = nx.DiGraph()
-    for i in range(len(heads)):
-        if graph.has_edge(tails[i], heads[i]):
-            graph[tails[i]][heads[i]]['weight'] += 1
-            graph[tails[i]][heads[i]]['text'].append(texts[i])
-        else:
-            graph.add_edges_from([[tails[i], heads[i]]], weight=1,text = texts[i])
+    if texts is not None:
+        for i in range(len(heads)):
+            if graph.has_edge(tails[i], heads[i]):
+                graph[tails[i]][heads[i]]['weight'] += 1
+                graph[tails[i]][heads[i]]['text'].append(texts[i])
+            else:
+                graph.add_edges_from([[tails[i], heads[i]]], weight=1,text = texts[i])
+    elif texts is None:
+        for i in range(len(heads)):
+            if graph.has_edge(tails[i], heads[i]):
+                graph[tails[i]][heads[i]]['weight'] += 1
+            else:
+                graph.add_edges_from([[tails[i], heads[i]]], weight=1)
 
     return graph
+    
     
 def static_reply_graph(data, graph=None):
     orginal_usernames = []
@@ -54,34 +50,28 @@ def static_reply_graph(data, graph=None):
     return graph_maker(orginal_usernames, reply_usernames, graph)
 
 
-def static_mention_graph(data, graph=None):
+def static_mention_graph(data, sentiment, graph=None):
     
-    original_usernames = []
-    mentioned_usernames = []
-    
-    for item in data:
-        if 'retweeted_status' not in item:
+    tails = [] 
+    heads = [] 
+    if sentiment == True:
+        texts = []
+        for item in data:
+            if 'retweeted_status' not in item:
                 for k in range(len(item['entities']['user_mentions'])):
-                    original_usernames.append(item['user']['screen_name'])
-                    mentioned_usernames.append(item['entities']['user_mentions'][k]['screen_name'])
-                    
-    return graph_maker(mentioned_usernames, original_usernames, graph)
+                    tails.append(item['user']['screen_name'])
+                    heads.append(item['entities']['user_mentions'][k]['screen_name'])
+                    texts.append([[item['full_text']]])
 
+    else:
+        texts = None
+        for item in data:
+            if 'retweeted_status' not in item:
+                for k in range(len(item['entities']['user_mentions'])):
+                    tails.append(item['user']['screen_name'])
+                    heads.append(item['entities']['user_mentions'][k]['screen_name'])
 
-def static_mention_graph_with_sentiment(data, graph=None):
-    
-    original_usernames = [] #tails
-    mentioned_usernames = [] #Heads
-    texts = []
-    
-    for item in data:
-        if 'retweeted_status' not in item:
-            for k in range(len(item['entities']['user_mentions'])):
-                original_usernames.append(item['user']['screen_name'])
-                mentioned_usernames.append(item['entities']['user_mentions'][k]['screen_name'])
-                texts.append([[item['full_text']]])
-                         
-    return graph_maker_with_sentiment(mentioned_usernames, original_usernames, texts, graph)
+    return graph_maker(heads, tails, texts, graph)   
     
     
 def static_retweet_graph(data, graph=None):
