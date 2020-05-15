@@ -4,7 +4,7 @@ from data_loader import Dataloader
 import copy
 
 
-def graph_maker(heads, tails, texts, graph=None):
+def graph_maker(heads, tails, texts=None, graph=None):
     # graph initiate
     if graph is None:
         graph = nx.DiGraph()
@@ -38,7 +38,7 @@ def static_reply_graph(data, graph=None):
     return graph_maker(orginal_usernames, reply_usernames, graph)
 
 
-def static_mention_graph(data, sentiment, graph=None):
+def static_mention_graph(data, sentiment=False, graph=None):
     
     tails = [] 
     heads = [] 
