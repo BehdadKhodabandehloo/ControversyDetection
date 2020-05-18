@@ -14,14 +14,18 @@ Papers that Have been read until now:
   -  Content and Network Dynamics Behind Egyptian Political Polarization on Twitter (Behdad)
   -  Analyzing Polarization of Social Media Users and News Sites during Political Campaigns (Mehrdad)
   -  Stance Evolution and Twitter Interactions in an Italian Political Debate (Behdad)
+  -  Current State of Text Sentiment Analysis from Opinion to Emotion Mining(Behdad, Mehrdad)
+  
+Github used:
+  -  [sentiment module](https://github.com/amaiya/ktrain)
   
 Papers that would be read:
-  - Current State of Text Sentiment Analysis from Opinion to Emotion Mining(Behdad)
-  - Current State of Text Sentiment Analysis from Opinion to Emotion Mining(Mehrdad)
+  - Vocabulary-based Method for Quantifying Controversy in Social Media(Behdad)
+  - Aggregate Characterization of User Behavior in Twitter and Analysis of the Retweet Graph(Mehrdad)
  
 Task that would be done:
-  -  Refactoring(Behdad)
-  -  [sentiment module](https://github.com/amaiya/ktrain), (Mehrdad)
+  -  Mention Graph Sentiment Analysis(Behdad)
+  -  Reply Graph Sentiment Analysis(Mehrdad)
   
 # Future Ideas:
 in progressing ideas for polarization quantifying:
