@@ -24,8 +24,8 @@ Papers that would be read:
   - Aggregate Characterization of User Behavior in Twitter and Analysis of the Retweet Graph(Mehrdad)
  
 Task that would be done:
-  -  Mention Graph Sentiment Analysis(Behdad)
-  -  Reply Graph Sentiment Analysis(Mehrdad)
+  -  Mention Graph Sentiment Analysis(Behdad)--> partition on retweet graph
+  -  Reply Graph Sentiment Analysis(Mehrdad)--> partition on retweet graph
   
 # Future Ideas:
 in progressing ideas for polarization quantifying:
