@@ -21,6 +21,7 @@ if __name__ == '__main__':
     model = load_model_sentiment('/root/Sentiment-analysis/sentiment_module.model')
     for edge in rep_graph.edges:
         for text in rep_graph[edge[0]][edge[1]]['text']:
+            print(rep_graph[edge[0]][edge[1]]['text'])
             if 'sentiments' not in rep_graph[edge[0]][edge[1]]:
                 rep_graph[edge[0]][edge[1]]['sentiment'] = []
             sent = sentiment(text, model)[0]

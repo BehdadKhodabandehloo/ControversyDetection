@@ -14,7 +14,7 @@ def graph_maker(heads, tails, texts=None, graph=None):
                 graph[tails[i]][heads[i]]['weight'] += 1
                 graph[tails[i]][heads[i]]['text'].append(texts[i])
             else:
-                graph.add_edges_from([[tails[i], heads[i]]], weight=1, text=texts[i])
+                graph.add_edges_from([[tails[i], heads[i]]], weight=1, text=[texts[i]])
     elif texts is None:
         for i in range(len(heads)):
             if graph.has_edge(tails[i], heads[i]):
@@ -37,7 +37,7 @@ def static_reply_graph(data, sentiment=False, graph=None):
                 orginal_usernames.append(item['in_reply_to_user_id'])
                 reply_usernames.append(item['user']['id'])
                 if sentiment:
-                    texts.append([[item['full_text']]])
+                    texts.append(item['full_text'])
 
     return graph_maker(orginal_usernames, reply_usernames, texts, graph)
 
@@ -53,7 +53,7 @@ def static_mention_graph(data, sentiment=False, graph=None):
                 for k in range(len(item['entities']['user_mentions'])):
                     tails.append(item['user']['screen_name'])
                     heads.append(item['entities']['user_mentions'][k]['screen_name'])
-                    texts.append([[item['full_text']]])
+                    texts.append(item['full_text'])
 
     else:
         texts = None
