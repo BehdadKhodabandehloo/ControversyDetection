@@ -1,4 +1,3 @@
-from math import log2
 import networkx as nx
 import nxmetis
 from scipy import stats

@@ -1,20 +1,20 @@
 import networkx as nx
 from utils import *
-from data_loader import Dataloader
 import copy
 
 
 def graph_maker(heads, tails, texts=None, graph=None):
     # graph initiate
     if graph is None:
-        graph = nx.DiGraph()
+        # graph = nx.DiGraph()
+        graph = nx.Graph()
     if texts is not None:
         for i in range(len(heads)):
             if graph.has_edge(tails[i], heads[i]):
                 graph[tails[i]][heads[i]]['weight'] += 1
                 graph[tails[i]][heads[i]]['text'].append(texts[i])
             else:
-                graph.add_edges_from([[tails[i], heads[i]]], weight=1,text = texts[i])
+                graph.add_edges_from([[tails[i], heads[i]]], weight=1, text=texts[i])
     elif texts is None:
         for i in range(len(heads)):
             if graph.has_edge(tails[i], heads[i]):
@@ -25,24 +25,28 @@ def graph_maker(heads, tails, texts=None, graph=None):
     return graph
     
     
-def static_reply_graph(data, graph=None):
+def static_reply_graph(data, sentiment=False, graph=None):
     orginal_usernames = []
     reply_usernames = []
-
+    texts = None
+    if sentiment:
+        texts = []
     for item in data:
         if 'in_reply_to_user_id' in item:
             if item['in_reply_to_user_id'] is not None:
                 orginal_usernames.append(item['in_reply_to_user_id'])
                 reply_usernames.append(item['user']['id'])
+                if sentiment:
+                    texts.append([[item['full_text']]])
 
-    return graph_maker(orginal_usernames, reply_usernames, graph)
+    return graph_maker(orginal_usernames, reply_usernames, texts, graph)
 
 
 def static_mention_graph(data, sentiment=False, graph=None):
     
     tails = [] 
     heads = [] 
-    if sentiment == True:
+    if sentiment:
         texts = []
         for item in data:
             if 'retweeted_status' not in item:
@@ -69,8 +73,8 @@ def static_retweet_graph(data, graph=None):
     
     for item in data:
         if 'retweeted_status' in item:
-                heads.append(item['retweeted_status']['user']['screen_name'])
-                tails.append(item['user']['screen_name'])
+                heads.append(item['retweeted_status']['user']['id'])
+                tails.append(item['user']['id'])
             
     return graph_maker(heads, tails, texts, graph)
 
@@ -111,6 +115,7 @@ def dynamic_graph(data, graph_type='retweet', discrete_bin=3600):
 
 
 if __name__ == '__main__':
+    from data_loader import Dataloader
     file = 'baltimore_data'
     dataloader = Dataloader('/root/tweets_dataset')
     dataset = dataloader.load_files(file)
