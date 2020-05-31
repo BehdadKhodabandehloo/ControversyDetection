@@ -55,3 +55,7 @@ def mention_sentiment(dataset, model):
     right_positive = sum(cross_sentiment)[1] / len(right_side_texts)
     print('right_negative :', right_negative)
     print('right_positive :', right_positive)
+
+    
+cross_negative : 0.474296181290238
+cross_positive : 0.525703818709762
