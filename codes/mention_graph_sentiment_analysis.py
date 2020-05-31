@@ -5,7 +5,7 @@ if __name__ == '__main__':
     
 model = load_model_sentiment('/root/sentiment_module/sentiment_module.model')
 
-def group_sentiment(mention_graph, edges, group_side='cross'):
+def group_sentiment(mention_graph, edges, group_side):
     texts = []
     for item in edges:
         if item in mention_graph.edges():
