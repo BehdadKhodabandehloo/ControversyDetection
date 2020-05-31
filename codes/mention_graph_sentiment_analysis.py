@@ -2,21 +2,20 @@ if __name__ == '__main__':
     file = 'baltimore_data'
     dataloader = Dataloader('/root/sentiment_module/baltimore')
     dataset = dataloader.load_files(file)
-    print(len(dataset))
-    print(dataset[0])
-
+    
 model = load_model_sentiment('/root/sentiment_module/sentiment_module.model')
 
-def group_sentiment(mention_graph,  edges):
+def group_sentiment(mention_graph, edges, group_side='cross'):
     texts = []
     for item in edges:
         if item in mention_graph.edges():
             texts.extend(mention_graph.edges[item]['text'])
     group_sentiment = sentiment(texts, model, prob=True)
-    group_negative = sum(group_sentiment)[0] / len(ctexts)
+    group_negative = sum(group_sentiment)[0] / len(texts)
     group_positive = sum(group_sentiment)[1] / len(texts)
-    print('cross_negative :', group_negative)
-    print('cross_positive :', group_positive)
+    print(group_side + 'negative :', group_negative)
+    print(group_side + 'positive :', group_positive)
+
             
 def mention_sentiment(dataset, model):
     retweet_graph = static_retweet_graph(dataset)
@@ -30,15 +29,15 @@ def mention_sentiment(dataset, model):
     list2 = right_to_left.copy()
     list1.extend(list2)
     cross_edges = list1
-    group_sentiment(mention_graph,  cross_edges)
+    group_sentiment(mention_graph,  cross_edges, 'cross')
     
     # mention sentiment inside left partition
     left_partition_edges = retweet_graph.edges(partitions[0])
-    group_sentiment(mention_graph, left_partition_edges)
+    group_sentiment(mention_graph, left_partition_edges, 'left')
     
     # mention sentiment inside right partition
     right_partition_edges = retweet_graph.edges(partitions[0])
-    group_sentiment(mention_graph, right_partition_edges)
+    group_sentiment(mention_graph, right_partition_edges, 'right')
 
 
     
