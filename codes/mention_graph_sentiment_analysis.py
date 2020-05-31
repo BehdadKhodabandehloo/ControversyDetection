@@ -32,11 +32,11 @@ def mention_sentiment(dataset, model):
     group_sentiment(mention_graph,  cross_edges, 'cross')
     
     # mention sentiment inside left partition
-    left_partition_edges = retweet_graph.edges(partitions[0])
+    left_partition_edges = retweet_graph.edges(partitions[1][0])
     group_sentiment(mention_graph, left_partition_edges, 'left')
     
     # mention sentiment inside right partition
-    right_partition_edges = retweet_graph.edges(partitions[0])
+    right_partition_edges = retweet_graph.edges(partitions[1][1])
     group_sentiment(mention_graph, right_partition_edges, 'right')
 
 #cross_negative : 0.474296181290238
