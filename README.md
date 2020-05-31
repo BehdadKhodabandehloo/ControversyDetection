@@ -15,17 +15,19 @@ Papers that Have been read until now:
   -  Analyzing Polarization of Social Media Users and News Sites during Political Campaigns (Mehrdad)
   -  Stance Evolution and Twitter Interactions in an Italian Political Debate (Behdad)
   -  Current State of Text Sentiment Analysis from Opinion to Emotion Mining(Behdad, Mehrdad)
+  -  Vocabulary-based Method for Quantifying Controversy in Social Media(Behdad)
+  -  Aggregate Characterization of User Behavior in Twitter and Analysis of the Retweet Graph(Mehrdad)
   
 Github used:
   -  [sentiment module](https://github.com/amaiya/ktrain)
   
 Papers that would be read:
-  - Vocabulary-based Method for Quantifying Controversy in Social Media(Behdad)
-  - Aggregate Characterization of User Behavior in Twitter and Analysis of the Retweet Graph(Mehrdad)
+  -  (Behdad)
+  -  (Mehrdad)
  
 Task that would be done:
-  -  Mention Graph Sentiment Analysis(Behdad)--> partition on retweet graph
-  -  Reply Graph Sentiment Analysis(Mehrdad)--> partition on retweet graph
+  -  Test on Mention Graph(Behdad)
+  -  Test on Reply Graph(Mehrdad)
   
 # Future Ideas:
 in progressing ideas for polarization quantifying:
@@ -33,6 +35,8 @@ in progressing ideas for polarization quantifying:
 - Heterogeneous Analysis
 - Sentiment Analysis on Users(add sentiment to weight of edges in mention graph)
 - Graph Prediction
+- Clustering Coeffient analysis on retweet graph
+- Training model on user's tweets in two partitions
 
 # Conferences
 - [Complex Networks](https://www.complexnetworks.org/) (submission deadline: 02/september = 12/shahrivar)
