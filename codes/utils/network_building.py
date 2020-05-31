@@ -51,8 +51,8 @@ def static_mention_graph(data, sentiment=False, graph=None):
         for item in data:
             if 'retweeted_status' not in item:
                 for k in range(len(item['entities']['user_mentions'])):
-                    tails.append(item['user']['screen_name'])
-                    heads.append(item['entities']['user_mentions'][k]['screen_name'])
+                    tails.append(item['user']['id'])
+                    heads.append(item['entities']['user_mentions'][k]['id'])
                     texts.append(item['full_text'])
 
     else:
@@ -60,8 +60,8 @@ def static_mention_graph(data, sentiment=False, graph=None):
         for item in data:
             if 'retweeted_status' not in item:
                 for k in range(len(item['entities']['user_mentions'])):
-                    tails.append(item['user']['screen_name'])
-                    heads.append(item['entities']['user_mentions'][k]['screen_name'])
+                    tails.append(item['user']['id'])
+                    heads.append(item['entities']['user_mentions'][k]['id'])
 
     return graph_maker(heads, tails, texts, graph)   
     

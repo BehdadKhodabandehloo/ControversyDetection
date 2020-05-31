@@ -6,7 +6,7 @@ import nxmetis
 
 if __name__ == '__main__':
     print('load dataset')
-    file = 'baltimore_data'
+    file = 'beefban_data'
     dataloader = Dataloader('/root/tweets_dataset')
     dataset = dataloader.load_files(file)
     print('build retweet graph')
@@ -23,7 +23,7 @@ if __name__ == '__main__':
         for text in rep_graph[edge[0]][edge[1]]['text']:
             if 'sentiments' not in rep_graph[edge[0]][edge[1]]:
                 rep_graph[edge[0]][edge[1]]['sentiment'] = []
-            sent = sentiment(text, model)[0]
+            sent = sentiment(text, model)
             if 'neg' in sent:
                 rep_graph[edge[0]][edge[1]]['sentiment'].append('neg')
             else:
