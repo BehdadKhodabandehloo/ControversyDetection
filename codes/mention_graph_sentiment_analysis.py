@@ -1,11 +1,11 @@
 if __name__ == '__main__':
     file = 'baltimore_data'
-    dataloader = Dataloader('/home/behdad/sentiment_module/baltimore')
+    dataloader = Dataloader('/root/sentiment_module/baltimore')
     dataset = dataloader.load_files(file)
     print(len(dataset))
     print(dataset[0])
 
-model = load_model_sentiment('/home/behdad/sentiment_module/sentiment_module.model')
+model = load_model_sentiment('/root/sentiment_module/sentiment_module.model')
 
 def mention_sentiment(dataset, model):
     retweet_graph = static_retweet_graph(dataset)
