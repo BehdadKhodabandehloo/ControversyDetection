@@ -26,8 +26,8 @@ Papers that would be read:
   -  (Mehrdad)
  
 Task that would be done:
-  -  Test on Mention Graph(Behdad)
-  -  Test on Reply Graph(Mehrdad)
+  -  Train Model on Twitter Dataset, start writing on method in overleaf(Behdad)
+  -  Access to Jupyter, seprate reply graph from mention graph, start writing on method in overleaf(Mehrdad)
   
 # Future Ideas:
 in progressing ideas for polarization quantifying:
@@ -37,6 +37,7 @@ in progressing ideas for polarization quantifying:
 - Graph Prediction
 - Clustering Coeffient analysis on retweet graph
 - Training model on user's tweets in two partitions
+- infulence of news on sentiment dynamic analysis
 
 # Conferences
 - [Complex Networks](https://www.complexnetworks.org/) (submission deadline: 02/september = 12/shahrivar)
