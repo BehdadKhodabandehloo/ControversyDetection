@@ -23,8 +23,8 @@ def mention_sentiment(dataset, model):
     mention_graph = static_mention_graph(dataset, sentiment=True)
 
     # mention sentiment between left and right partitions
-    left_to_right = list(nx.edge_boundary(retweet_graph, partitions[1][0], partitions[1][1]))
-    right_to_left = list(nx.edge_boundary(retweet_graph, partitions[1][1], partitions[1][0]))
+    left_to_right = list(nx.edge_boundary(mention_graph, partitions[1][0], partitions[1][1]))
+    right_to_left = list(nx.edge_boundary(mention_graph, partitions[1][1], partitions[1][0]))
     list1 = left_to_right.copy()
     list2 = right_to_left.copy()
     list1.extend(list2)
