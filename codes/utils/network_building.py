@@ -43,26 +43,24 @@ def static_reply_graph(data, sentiment=False, graph=None):
 
 
 def static_mention_graph(data, sentiment=False, graph=None):
-    
     tails = [] 
-    heads = [] 
+    heads = []
+    texts = None
     if sentiment:
         texts = []
-        for item in data:
-            if 'retweeted_status' not in item:
-                for k in range(len(item['entities']['user_mentions'])):
+    for item in data:
+        if 'retweeted_status' not in item:
+            for k in range(len(item['entities']['user_mentions'])):
+                if 'in_reply_to_user_id' in item:
+                    if item['in_reply_to_user_id'] is not None:
+                        if item['entities']['user_mentions'][k]['id'] != item['in_reply_to_user_id']:
+                            tails.append(item['user']['id'])
+                            heads.append(item['entities']['user_mentions'][k]['id'])
+                else:
                     tails.append(item['user']['id'])
                     heads.append(item['entities']['user_mentions'][k]['id'])
+                if texts is None:
                     texts.append(item['full_text'])
-
-    else:
-        texts = None
-        for item in data:
-            if 'retweeted_status' not in item:
-                for k in range(len(item['entities']['user_mentions'])):
-                    tails.append(item['user']['id'])
-                    heads.append(item['entities']['user_mentions'][k]['id'])
-
     return graph_maker(heads, tails, texts, graph)   
     
     
