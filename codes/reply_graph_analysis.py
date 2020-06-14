@@ -26,9 +26,10 @@ if __name__ == '__main__':
                 rep_graph[edge[0]][edge[1]]['pos'] = 0
                 rep_graph[edge[0]][edge[1]]['neg'] = 0
             sent = sentiment(text, model, prob=True)
-            rep_graph[edge[0]][edge[1]]['neg'] += sent[0]
-            rep_graph[edge[0]][edge[1]]['pos'] += sent[1]
-            count += 1
+            if sent[0]>0.7 or sent[1]>0.7:
+                rep_graph[edge[0]][edge[1]]['neg'] += sent[0]
+                rep_graph[edge[0]][edge[1]]['pos'] += sent[1]
+                count += 1
         rep_graph[edge[0]][edge[1]]['neg'] /= count
         rep_graph[edge[0]][edge[1]]['pos'] /= count
 
