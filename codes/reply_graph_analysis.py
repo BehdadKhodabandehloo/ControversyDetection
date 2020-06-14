@@ -30,8 +30,9 @@ if __name__ == '__main__':
                 rep_graph[edge[0]][edge[1]]['neg'] += sent[0]
                 rep_graph[edge[0]][edge[1]]['pos'] += sent[1]
                 count += 1
-        rep_graph[edge[0]][edge[1]]['neg'] /= count
-        rep_graph[edge[0]][edge[1]]['pos'] /= count
+        if count !=0 :
+            rep_graph[edge[0]][edge[1]]['neg'] /= count
+            rep_graph[edge[0]][edge[1]]['pos'] /= count
 
     between_partitions = {'neg': 0, 'pos': 0, 'count': 0}
     op_partition = {'neg': 0, 'pos': 0, 'count': 0}
