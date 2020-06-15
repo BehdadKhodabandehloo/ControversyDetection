@@ -26,8 +26,8 @@ Papers that would be read:
   -  (Mehrdad)
  
 Task that would be done:
-  -  Train Model on Twitter Dataset, start writing on method in overleaf(Behdad)
-  -  Access to Jupyter, seprate reply graph from mention graph, start writing on method in overleaf(Mehrdad)
+  -  Results on Mention Graph, Research on dis/agreement(Behdad)
+  -  Research on audience(Mehrdad)
   
 # Future Ideas:
 in progressing ideas for polarization quantifying:
