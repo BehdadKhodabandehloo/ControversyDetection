@@ -18,8 +18,9 @@ Papers that Have been read until now:
   -  Vocabulary-based Method for Quantifying Controversy in Social Media(Behdad)
   -  Aggregate Characterization of User Behavior in Twitter and Analysis of the Retweet Graph(Mehrdad)
   
-Github used:
+Resources
   -  [sentiment module](https://github.com/amaiya/ktrain)
+  -  [Agreement/Disagreement Datasets](http://www.cs.columbia.edu/~sara/data.php)
   
 Papers that would be read:
   -  (Behdad)
