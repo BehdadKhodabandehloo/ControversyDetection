@@ -30,7 +30,7 @@ Papers that would be read:
 # Tasks
 Task that would be done:
   -  Results on Mention Graph, Research on dis/agreement(Behdad)
-  -  Research on audience(Mehrdad)
+  -  Research on audience(objective, subjective)(Mehrdad)
   
 # Future Ideas:
 in progressing ideas for polarization quantifying:
