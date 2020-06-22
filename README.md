@@ -19,7 +19,7 @@ Papers that Have been read until now:
   -  Aggregate Characterization of User Behavior in Twitter and Analysis of the Retweet Graph(Mehrdad)
   
 Papers that would be read:
-  -  (Behdad)
+  -  Annotating Agreement and Disagreement in Threaded Discussion (Behdad)
   -  (Mehrdad)
   
 # Resources
