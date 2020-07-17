@@ -20,7 +20,7 @@ Papers that Have been read until now:
   
 Papers that would be read:
   -  Annotating Agreement and Disagreement in Threaded Discussion (Behdad)
-  -  (Mehrdad)
+  -  I Couldn’t Agree More: The Role of Conversational Structure in Agreement and Disagreement Detection in Online Discussions(Mehrdad)
   
 # Resources
   -  [sentiment module](https://github.com/amaiya/ktrain)
@@ -45,5 +45,5 @@ in progressing ideas for polarization quantifying:
 # Conferences
 - [Complex Networks](https://www.complexnetworks.org/) (submission deadline: 02/september = 12/shahrivar)
 - [SNAMS- Social Networks Analysis, Management and Security](http://emergingtechnet.org/SNAMS2020/index.php) (submission deadline: 10/july = 20/tir)
-- [SocInfo- Social Informatics](https://kdd.isti.cnr.it/socinfo2020/) (submission deadline: 29/May = 9/khordad)
+- [SocInfo- Social Informatics](https://kdd.isti.cnr.it/socinfo2020/) (abstrcat submission deadline: 31/July = 10/Mordad, paper deadline: 7/August = 17/Mordad)
 - [ICWSM(AAAI)- Web and Social Media 2021](https://www.icwsm.org/2020/index.html) (submission deadline: 15/september = 25/shahrivar)
