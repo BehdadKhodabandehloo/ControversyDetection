@@ -17,10 +17,11 @@ Papers that Have been read until now:
   -  Current State of Text Sentiment Analysis from Opinion to Emotion Mining(Behdad, Mehrdad)
   -  Vocabulary-based Method for Quantifying Controversy in Social Media(Behdad)
   -  Aggregate Characterization of User Behavior in Twitter and Analysis of the Retweet Graph(Mehrdad)
-  
-Papers that would be read:
   -  Annotating Agreement and Disagreement in Threaded Discussion (Behdad)
   -  I Couldn’t Agree More: The Role of Conversational Structure in Agreement and Disagreement Detection in Online Discussions(Mehrdad)
+  
+Papers that would be read:
+
   
 # Resources
   -  [sentiment module](https://github.com/amaiya/ktrain)
@@ -29,8 +30,8 @@ Papers that would be read:
 
 # Tasks
 Task that would be done:
-  -  Results on Mention Graph, Research on dis/agreement(Behdad)
-  -  Research on audience(objective, subjective)(Mehrdad)
+  -  Report degree distribution in reply, mention and retweet graph dynamically and report this on two part of the polarized network(Behdad)
+  -  Analysis on sentiment tweet count in reply and mention graph dynamically and report this work on two part of the polarized network(Mehrdad)
   
 # Future Ideas:
 in progressing ideas for polarization quantifying:
