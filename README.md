@@ -30,7 +30,7 @@ Papers that would be read:
 
 # Tasks
 Task that would be done:
-  -  Report degree distribution in reply, mention and retweet graph dynamically and report this on two part of the polarized network(Behdad)
+  -  Report degree distribution and other structure measures in reply, mention and retweet graph dynamically and report this on two part of the polarized network(Behdad)
   -  Analysis on sentiment tweet count in reply and mention graph dynamically and report this work on two part of the polarized network(Mehrdad)
   
 # Future Ideas:
