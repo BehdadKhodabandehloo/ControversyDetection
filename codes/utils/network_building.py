@@ -77,7 +77,7 @@ def static_retweet_graph(data, graph=None, sentiment=False):
     return graph_maker(heads, tails, texts, graph)
 
 
-def dynamic_graph(data, graph_type='retweet', discrete_bin=3600, sentiment=False):
+def dynamic_graph(data, graph_type='retweet', discrete_bin=3600, sentiment=False, cumulative=True):
     graph_types = {
         'retweet': static_retweet_graph,
         'reply': static_reply_graph,
@@ -101,14 +101,18 @@ def dynamic_graph(data, graph_type='retweet', discrete_bin=3600, sentiment=False
             times = key.split('_')
             if int(times[0]) <= item['created_at'] < int(times[1]):
                 dygraph[key].append(item)
-    previous_key = None
-    for key, graph_list in dygraph.items():
-        if previous_key is None:
+    if cumulative:
+        previous_key = None
+        for key, graph_list in dygraph.items():
+            if previous_key is None:
+                dygraph[key] = graph_types[graph_type](graph_list, sentiment=sentiment)
+            else:
+                temp_graph = copy.deepcopy(dygraph[previous_key])
+                dygraph[key] = graph_types[graph_type](graph_list, graph=temp_graph, sentiment=sentiment)
+            previous_key = key
+    else:
+        for key, graph_list in dygraph.items():
             dygraph[key] = graph_types[graph_type](graph_list, sentiment=sentiment)
-        else:
-            temp_graph = copy.deepcopy(dygraph[previous_key])
-            dygraph[key] = graph_types[graph_type](graph_list, graph=temp_graph, sentiment=sentiment)
-        previous_key = key
     return dygraph
 
 
@@ -118,7 +122,7 @@ if __name__ == '__main__':
     dataloader = Dataloader('/root/tweets_dataset')
     dataset = dataloader.load_files(file)
     print('size of dataset = %s' % len(dataset))
-    graphs = dynamic_graph(dataset, graph_type='reply')
+    graphs = dynamic_graph(dataset, graph_type='reply', cumulative=False)
     # print('reply graph --> nodes = %s, edges = %s' % (len(graph.nodes), len(graph.edges)))
     count = 1
     for key, graph in graphs.items():
