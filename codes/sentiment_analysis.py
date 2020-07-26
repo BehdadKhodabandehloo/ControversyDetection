@@ -95,6 +95,7 @@ if __name__ == '__main__':
 
             plt.savefig('../Plots/%s_%s_%s_percentage.png' % (file, graph_type, sent))
 
+            plt.clf()
 
             plt.plot(x, between_count[sent], color='red')
             plt.plot(x, op_count[sent], color='blue')
@@ -103,3 +104,4 @@ if __name__ == '__main__':
             plt.legend(['Between Group', 'Left Group', 'Right Group'], loc='upper left')
 
             plt.savefig('../Plots/%s_%s_%s_count.png' % (file, graph_type, sent))
+            plt.clf()
