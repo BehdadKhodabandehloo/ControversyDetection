@@ -59,7 +59,7 @@ def static_mention_graph(data, sentiment=False, graph=None):
                 else:
                     tails.append(item['user']['id'])
                     heads.append(item['entities']['user_mentions'][k]['id'])
-                if texts is None:
+                if sentiment:
                     texts.append(item['full_text'])
     return graph_maker(heads, tails, texts, graph)   
     
