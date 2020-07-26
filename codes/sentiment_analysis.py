@@ -9,7 +9,7 @@ from termcolor import colored
 
 if __name__ == '__main__':
     matplotlib.use('Agg')
-    threshold = 0.0
+    threshold = 0.8
     print('load sentiment model')
     model = load_model_sentiment('/root/Sentiment-analysis/sentiment_module.model')
     print('load dataset')
@@ -22,26 +22,25 @@ if __name__ == '__main__':
     partitions = nxmetis.partition(ret_graph, 2)
     op_nodes = partitions[1][0]
     agg_nodes = partitions[1][1]
-    for graph_type in ['mention']:
-        rep_graphs = dynamic_graph(dataset, graph_type=graph_type, sentiment=True)
+    for graph_type in ['mention', 'reply']:
+        rep_graphs = dynamic_graph(dataset, graph_type=graph_type, sentiment=True, cumulative=False)
         between_scores = {'neg': [], 'pos': []}
         op_scores = {'neg': [], 'pos': []}
         agg_scores = {'neg': [], 'pos': []}
+        between_count = {'neg': [], 'pos': []}
+        op_count = {'neg': [], 'pos': []}
+        agg_count = {'neg': [], 'pos': []}
         for key, rep_graph in rep_graphs.items():
             for edge in rep_graph.edges:
-                count = 0
                 for text in rep_graph[edge[0]][edge[1]]['text']:
                     if 'pos' or 'neg' not in rep_graph[edge[0]][edge[1]]:
                         rep_graph[edge[0]][edge[1]]['pos'] = 0
                         rep_graph[edge[0]][edge[1]]['neg'] = 0
                     sent = sentiment(text, model, prob=True)
-                    if sent[0] > threshold or sent[1] > threshold:
-                        rep_graph[edge[0]][edge[1]]['neg'] += sent[0]
-                        rep_graph[edge[0]][edge[1]]['pos'] += sent[1]
-                        count += 1
-                if count != 0:
-                    rep_graph[edge[0]][edge[1]]['neg'] /= count
-                    rep_graph[edge[0]][edge[1]]['pos'] /= count
+                    if sent[0] > threshold:
+                        rep_graph[edge[0]][edge[1]]['neg'] += 1
+                    if sent[1] > threshold:
+                        rep_graph[edge[0]][edge[1]]['pos'] += 1
 
             between_partitions = {'neg': 0, 'pos': 0, 'count': 0}
             op_partition = {'neg': 0, 'pos': 0, 'count': 0}
@@ -75,6 +74,9 @@ if __name__ == '__main__':
                 between_scores[sent].append(between_partitions['%s_avg' % sent])
                 op_scores[sent].append(op_partition['%s_avg' % sent])
                 agg_scores[sent].append(agg_partition['%s_avg' % sent])
+                between_count[sent].append(between_partitions[sent])
+                op_count[sent].append(op_partition[sent])
+                agg_count[sent].append(agg_partition[sent])
             print(colored('dynamic graph key: %s' % key, 'green'))
             print('between partitions')
             print(between_partitions)
@@ -91,4 +93,13 @@ if __name__ == '__main__':
 
             plt.legend(['Between Group', 'Left Group', 'Right Group'], loc='upper left')
 
-            plt.savefig('../Plots/%s_%s_%s.png' % (file, graph_type, sent))
+            plt.savefig('../Plots/%s_%s_%s_percentage.png' % (file, graph_type, sent))
+
+
+            plt.plot(x, between_count[sent], color='red')
+            plt.plot(x, op_count[sent], color='blue')
+            plt.plot(x, agg_count[sent], color='green')
+
+            plt.legend(['Between Group', 'Left Group', 'Right Group'], loc='upper left')
+
+            plt.savefig('../Plots/%s_%s_%s_count.png' % (file, graph_type, sent))
