@@ -23,12 +23,9 @@ if __name__ == '__main__':
     file = 'baltimore_data'
     from data_loader import Dataloader
     dataloader = Dataloader('/root/tweets_dataset')
-    dataset = dataloader.load_files(file)
+    dataset = dataloader.load_files(file, 100)
     import random
     samples = random.sample(dataset, 10)
-    model = load_model_sentiment('/root/Sentiment-analysis/sentiment_module.model')
     for item in samples:
-        print('Text:')
-        print(item['full_text'])
-        print('Sentiment: %s' % sentiment([item['full_text']], model, prob=True))
-        print('Sentiment: %s' % sentiment([item['full_text']], model))
+        item['created_at'] = int(datetime_to_timestamp(item['created_at']))
+        print(item['created_at'])

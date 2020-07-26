@@ -1,5 +1,5 @@
 import networkx as nx
-from utils import *
+from utils.utils import *
 import copy
 
 
@@ -64,7 +64,7 @@ def static_mention_graph(data, sentiment=False, graph=None):
     return graph_maker(heads, tails, texts, graph)   
     
     
-def static_retweet_graph(data, graph=None):
+def static_retweet_graph(data, graph=None, sentiment=False):
     heads = []
     tails = []
     texts = None
@@ -77,16 +77,16 @@ def static_retweet_graph(data, graph=None):
     return graph_maker(heads, tails, texts, graph)
 
 
-def dynamic_graph(data, graph_type='retweet', discrete_bin=3600):
+def dynamic_graph(data, graph_type='retweet', discrete_bin=3600, sentiment=False):
     graph_types = {
         'retweet': static_retweet_graph,
         'reply': static_reply_graph,
         'mention': static_mention_graph,
-        'mention_with_sentiment': static_mention_graph_with_sentiment
     }
     tweet_times = []
     for item in data:
-        item['created_at'] = int(datetime_to_timestamp(item['created_at']))
+        if type(item['created_at']) == str:
+            item['created_at'] = int(datetime_to_timestamp(item['created_at']))
         tweet_times.append(item['created_at'])
     first_time = min(tweet_times)
     window_time = first_time
@@ -104,10 +104,10 @@ def dynamic_graph(data, graph_type='retweet', discrete_bin=3600):
     previous_key = None
     for key, graph_list in dygraph.items():
         if previous_key is None:
-            dygraph[key] = graph_types[graph_type](graph_list)
+            dygraph[key] = graph_types[graph_type](graph_list, sentiment=sentiment)
         else:
             temp_graph = copy.deepcopy(dygraph[previous_key])
-            dygraph[key] = graph_types[graph_type](graph_list, temp_graph)
+            dygraph[key] = graph_types[graph_type](graph_list, graph=temp_graph, sentiment=sentiment)
         previous_key = key
     return dygraph
 
@@ -118,9 +118,10 @@ if __name__ == '__main__':
     dataloader = Dataloader('/root/tweets_dataset')
     dataset = dataloader.load_files(file)
     print('size of dataset = %s' % len(dataset))
-    graphs = dynamic_graph(dataset, graph_type='mention')
+    graphs = dynamic_graph(dataset, graph_type='reply')
     # print('reply graph --> nodes = %s, edges = %s' % (len(graph.nodes), len(graph.edges)))
     count = 1
     for key, graph in graphs.items():
         print('%s. graph (%s) --> nodes = %s, edges = %s' % (count, key, len(graph.nodes), len(graph.edges)))
         count += 1
+    print(len(graphs))
