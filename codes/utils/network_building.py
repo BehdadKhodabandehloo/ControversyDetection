@@ -2,7 +2,7 @@ import networkx as nx
 from utils.utils import *
 import copy
 
-
+# graph maker
 def graph_maker(heads, tails, texts=None, graph=None):
     # graph initiate
     if graph is None:
@@ -129,3 +129,4 @@ if __name__ == '__main__':
         print('%s. graph (%s) --> nodes = %s, edges = %s' % (count, key, len(graph.nodes), len(graph.edges)))
         count += 1
     print(len(graphs))
+
