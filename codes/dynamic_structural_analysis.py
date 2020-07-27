@@ -60,5 +60,7 @@ def clustering_coeff(snapshots, graph_type):
 
 mention_clustering_coeff = clustering_coeff(snapshots, graph_type = 'mention')
 
+
+
 # degree distributions
 

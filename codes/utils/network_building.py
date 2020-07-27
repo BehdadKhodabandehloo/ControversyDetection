@@ -119,8 +119,8 @@ def dynamic_graph(data, graph_type='retweet', discrete_bin=3600, sentiment=False
 if __name__ == '__main__':
     from data_loader import Dataloader
     file = 'baltimore_data'
-    dataloader = Dataloader('/root/tweets_dataset')
-    dataset = dataloader.load_files(file)
+    dataloader = Dataloader('E:/Network Science (99-3-30)/Tasks/Project 2 - Polarization/DataSets/baltimore')
+    dataset = dataloader.load_files(file, 1000)
     print('size of dataset = %s' % len(dataset))
     graphs = dynamic_graph(dataset, graph_type='reply', cumulative=False)
     # print('reply graph --> nodes = %s, edges = %s' % (len(graph.nodes), len(graph.edges)))
@@ -130,3 +130,5 @@ if __name__ == '__main__':
         count += 1
     print(len(graphs))
 
+
+graphs = dynamic_graph(dataset, graph_type='reply', cumulative=False)
