@@ -8,7 +8,7 @@ import nxmetis
 if __name__ == '__main__':
     from data_loader import Dataloader
     file = 'baltimore_data'
-    dataloader = Dataloader('E:/Network Science (99-3-30)/Tasks/Project 2 - Polarization/DataSets/baltimore')
+    dataloader = Dataloader('/root/baltimore')
     dataset = dataloader.load_files(file, 1000)
 
 
