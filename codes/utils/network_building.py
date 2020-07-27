@@ -2,7 +2,7 @@ import networkx as nx
 from utils.utils import *
 import copy
 
-# graph maker
+
 def graph_maker(heads, tails, texts=None, graph=None):
     # graph initiate
     if graph is None:
