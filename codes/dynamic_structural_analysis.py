@@ -4,11 +4,13 @@ from utils import *
 import copy
 import nxmetis
 
+
 if __name__ == '__main__':
     from data_loader import Dataloader
     file = 'baltimore_data'
     dataloader = Dataloader('E:/Network Science (99-3-30)/Tasks/Project 2 - Polarization/DataSets/baltimore')
     dataset = dataloader.load_files(file, 1000)
+
 
 retweet_snapshots = dynamic_graph(dataset, graph_type='retweet', discrete_bin=3600, sentiment=False, cumulative=True)
 mention_snapshots = dynamic_graph(dataset, graph_type='mention', discrete_bin=3600, sentiment=False, cumulative=True)
