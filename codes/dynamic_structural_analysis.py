@@ -4,6 +4,10 @@ import nxmetis
 import bigjson
 from bigjson.filereader import FileReader
 import json
+import datetime
+import time
+import collections
+import matplotlib.pyplot as plt
 
 if __name__ == '__main__':
     from data_loader import Dataloader
@@ -66,8 +70,8 @@ def clustering_coeff(snapshots, graph_type):
 #(main_graph, left_side, right_side) = three_graph(snapshots[44], 'mention')
 # degree distributions
 def degree_distribution(snapshot, graph_type):
-    (main_graph, left_side, right_side) = three_graph(snapshot, 'mention')
-    degree_sequence_main_graph = sorted([d for n, d in main_graph.degree()], reverse=True)  # degree sequence
+    (main_graph, left_side, right_side) = three_graph(snapshot, graph_type)
+    degree_sequence_main_graph = sorted([d for n, d in main_graph.degree()], reverse=True)
     degree_sequence_left_side = sorted([d for n, d in left_side.degree()], reverse=True)
     degree_sequence_right_side = sorted([d for n, d in right_side.degree()], reverse=True)
     plt.hist(degree_sequence_main_graph, alpha=0.5, label='main graph')
@@ -75,3 +79,5 @@ def degree_distribution(snapshot, graph_type):
     plt.hist(degree_sequence_right_side, alpha=0.5, label='right side')
     plt.legend(loc='upper right')
     plt.show()
+
+# dd = degree_distribution(snapshot[0], 'mention')
