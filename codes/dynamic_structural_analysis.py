@@ -1,14 +1,14 @@
 import networkx as nx
-from utils.utils import *
-from utils import *
 import copy
 import nxmetis
-
+import bigjson
+from bigjson.filereader import FileReader
+import json
 
 if __name__ == '__main__':
     from data_loader import Dataloader
     file = 'baltimore_data'
-    dataloader = Dataloader('/root/baltimore')
+    dataloader = Dataloader('/home/behdad/Desktop/baltimore_data.json')
     dataset = dataloader.load_files(file, 1000)
 
 
@@ -64,4 +64,22 @@ mention_clustering_coeff = clustering_coeff(snapshots, graph_type = 'mention')
 
 
 # degree distributions
+def degree_distribution(snapshot, graph_type):
+    (main_graph, left_side, right_side) = three_graph(snapshot, graph_type)
+    degree_sequence_main = sorted([d for n, d in main_graph.degree()], reverse=True)
+    degreeCount_main = collections.Counter(degree_sequence_main)
+    deg_main, cnt_main = zip(*degreeCount.items())
+    # fig_main, ax_main = plt.subplots()
+    degree_sequence_left = sorted([d for n, d in left_side.degree()], reverse=True)
+    degreeCount_left = collections.Counter(degree_sequence_left)
+    deg_left, cnt_left = zip(*degreeCount.items())
+    # fig_main, ax_main = plt.subplots()
+    degree_sequence_right = sorted([d for n, d in right_side.degree()], reverse=True)
+    degreeCount_right = collections.Counter(degree_sequence_right)
+    deg_right, cnt_right = zip(*degreeCount.items())
+    #    fig_main, ax_main = plt.subplots()
 
+    plt.bar(deg_main, cnt_main, width=0.80, color='b')
+    plt.bar(deg_left, cnt_left, width=0.80, color='r')
+    plt.bar(deg_right, cnt_right, width=0.80, color='g')
+    plt.show()
