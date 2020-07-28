@@ -60,26 +60,18 @@ def clustering_coeff(snapshots, graph_type):
                    nx.average_clustering(right_side)))
     return cc
 
-mention_clustering_coeff = clustering_coeff(snapshots, graph_type = 'mention')
+#mention_clustering_coeff = clustering_coeff(snapshots, graph_type = 'mention')
 
 
+#(main_graph, left_side, right_side) = three_graph(snapshots[44], 'mention')
 # degree distributions
 def degree_distribution(snapshot, graph_type):
-    (main_graph, left_side, right_side) = three_graph(snapshot, graph_type)
-    degree_sequence_main = sorted([d for n, d in main_graph.degree()], reverse=True)
-    degreeCount_main = collections.Counter(degree_sequence_main)
-    deg_main, cnt_main = zip(*degreeCount.items())
-    # fig_main, ax_main = plt.subplots()
-    degree_sequence_left = sorted([d for n, d in left_side.degree()], reverse=True)
-    degreeCount_left = collections.Counter(degree_sequence_left)
-    deg_left, cnt_left = zip(*degreeCount.items())
-    # fig_main, ax_main = plt.subplots()
-    degree_sequence_right = sorted([d for n, d in right_side.degree()], reverse=True)
-    degreeCount_right = collections.Counter(degree_sequence_right)
-    deg_right, cnt_right = zip(*degreeCount.items())
-    #    fig_main, ax_main = plt.subplots()
-
-    plt.bar(deg_main, cnt_main, width=0.80, color='b')
-    plt.bar(deg_left, cnt_left, width=0.80, color='r')
-    plt.bar(deg_right, cnt_right, width=0.80, color='g')
+    (main_graph, left_side, right_side) = three_graph(snapshot, 'mention')
+    degree_sequence_main_graph = sorted([d for n, d in main_graph.degree()], reverse=True)  # degree sequence
+    degree_sequence_left_side = sorted([d for n, d in left_side.degree()], reverse=True)
+    degree_sequence_right_side = sorted([d for n, d in right_side.degree()], reverse=True)
+    plt.hist(degree_sequence_main_graph, alpha=0.5, label='main graph')
+    plt.hist(degree_sequence_left_side, alpha=0.5, label='left side')
+    plt.hist(degree_sequence_right_side, alpha=0.5, label='right side')
+    plt.legend(loc='upper right')
     plt.show()
