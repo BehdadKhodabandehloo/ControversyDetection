@@ -1,7 +1,7 @@
 from utils.data_loader import Dataloader
 from utils.utils import *
 from utils.network_building import *
-from controversy_mesasures.conrtoversy_measures import *
+from controversy_measures.conrtoversy_measures import *
 import nxmetis
 
 if __name__ == '__main__':
