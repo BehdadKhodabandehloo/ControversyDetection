@@ -12,19 +12,19 @@ if __name__ == '__main__':
             dataset = dataloader.load_files(file)
 
             # mention graph analysis
-            mention_graph = static_mention_graph(dataset)
+            mention_graph = static_mention_graph(dataset, directed=True)
             partitions = nxmetis.partition(mention_graph, 2)
             bt_con = betweenness_centrality_controversy(mention_graph, partitions)
-            # RWW_con = random_walk_conteroversy(mention_graph, partitions, 1000)
+            RWW_con = random_walk_conteroversy(mention_graph, partitions, 1000)
             print("mention graph controversy measures")
             print("Betweennes Measure = %s" % bt_con)
-            # print("RWW Measure = %s" % RWW_con)
+            print("RWW Measure = %s" % RWW_con)
 
             # reply graph analysis
-            reply_graph = static_reply_graph(dataset)
+            reply_graph = static_reply_graph(dataset, directed=True)
             partitions = nxmetis.partition(reply_graph, 2)
             bt_con = betweenness_centrality_controversy(reply_graph, partitions)
-            # RWW_con = random_walk_conteroversy(reply_graph, partitions, 1000)
+            RWW_con = random_walk_conteroversy(reply_graph, partitions, 1000)
             print("reply graph controversy measures")
             print("Betweennes Measure = %s" % bt_con)
-            # print("RWW Measure = %s" % RWW_con)
+            print("RWW Measure = %s" % RWW_con)
