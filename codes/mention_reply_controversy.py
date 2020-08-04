@@ -13,7 +13,7 @@ if __name__ == '__main__':
 
             # mention graph analysis
             mention_graph = static_mention_graph(dataset, directed=True)
-            partitions = nxmetis.partition(mention_graph, 2)
+            partitions = nxmetis.partition(mention_graph.to_undirected(), 2)
             bt_con = betweenness_centrality_controversy(mention_graph, partitions)
             RWW_con = random_walk_conteroversy(mention_graph, partitions, 1000)
             print("mention graph controversy measures")
@@ -22,7 +22,7 @@ if __name__ == '__main__':
 
             # reply graph analysis
             reply_graph = static_reply_graph(dataset, directed=True)
-            partitions = nxmetis.partition(reply_graph, 2)
+            partitions = nxmetis.partition(reply_graph.to_undirected(), 2)
             bt_con = betweenness_centrality_controversy(reply_graph, partitions)
             RWW_con = random_walk_conteroversy(reply_graph, partitions, 1000)
             print("reply graph controversy measures")

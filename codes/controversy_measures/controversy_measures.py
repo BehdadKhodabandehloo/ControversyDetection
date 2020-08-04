@@ -38,7 +38,7 @@ def seprate_graph_with_betweenness(seprated_graph, betweeenes_edges):
 def roulette_wheel_selection(List):
     L = []
     r = random.random()
-    print(r)
+    # print(r)
     for i in range(len(List)):
         L.append(List[i])
         if r <= sum(L):
