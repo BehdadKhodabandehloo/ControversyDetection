@@ -1,3 +1,6 @@
+from codes.utils.data_loader import *
+import networkx as nx
+from codes.utils.network_building import dynamic_graph
 import networkx as nx
 import copy
 import nxmetis
@@ -9,25 +12,11 @@ import time
 import collections
 import matplotlib.pyplot as plt
 
-if __name__ == '__main__':
-    from data_loader import Dataloader
-    file = 'baltimore_data'
-    dataloader = Dataloader('/home/behdad/Desktop/baltimore_data.json')
-    dataset = dataloader.load_files(file, 1000)
-
-
-retweet_snapshots = dynamic_graph(dataset, graph_type='retweet', discrete_bin=3600, sentiment=False, cumulative=True)
-mention_snapshots = dynamic_graph(dataset, graph_type='mention', discrete_bin=3600, sentiment=False, cumulative=True)
-reply_snapshots = dynamic_graph(dataset, graph_type='reply', discrete_bin=3600, sentiment=False, cumulative=True)
-
-
 def all_snapshots(retweet_snapshots, mention_snapshots, reply_snapshots):
     snapshot_tuples = []
     for key in retweet_snapshots.keys():
         snapshot_tuples.append((retweet_snapshots[key], mention_snapshots[key], reply_snapshots[key]))
     return snapshot_tuples
-
-snapshots = all_snapshots(retweet_snapshots, mention_snapshots, reply_snapshots)
 
 # obtain three graphs in each snapshot in graph_type
 def three_graph(snapshot_tuple, graph_type):
@@ -52,8 +41,6 @@ def three_graph(snapshot_tuple, graph_type):
     return tuple((main_graph, left_side, right_side))
 
 
-#retweettt = three_graph(snapshots[0], 'retweet') # return retweet and left and right sides of retweet graph in snapshot 1
-
 # obtain clustering coeff
 def clustering_coeff(snapshots, graph_type):
     cc = []
@@ -64,20 +51,70 @@ def clustering_coeff(snapshots, graph_type):
                    nx.average_clustering(right_side)))
     return cc
 
-#mention_clustering_coeff = clustering_coeff(snapshots, graph_type = 'mention')
+if __name__ == '__main__':
+#    from data_loader import Dataloader
+    file = 'baltimore_data'
+    dataloader = Dataloader('/home/behdad/Desktop')
+    dataset = dataloader.load_files(file, 1000)
+    retweet_snapshots = dynamic_graph(dataset, graph_type='retweet', discrete_bin=3600, sentiment=False,
+                                      cumulative=True)
+    mention_snapshots = dynamic_graph(dataset, graph_type='mention', discrete_bin=3600, sentiment=False,
+                                      cumulative=True)
+    reply_snapshots = dynamic_graph(dataset, graph_type='reply', discrete_bin=3600, sentiment=False, cumulative=True)
+    snapshots = all_snapshots(retweet_snapshots, mention_snapshots, reply_snapshots)
 
 
-#(main_graph, left_side, right_side) = three_graph(snapshots[44], 'mention')
-# degree distributions
-def degree_distribution(snapshot, graph_type):
-    (main_graph, left_side, right_side) = three_graph(snapshot, graph_type)
-    degree_sequence_main_graph = sorted([d for n, d in main_graph.degree()], reverse=True)
-    degree_sequence_left_side = sorted([d for n, d in left_side.degree()], reverse=True)
-    degree_sequence_right_side = sorted([d for n, d in right_side.degree()], reverse=True)
-    plt.hist(degree_sequence_main_graph, alpha=0.5, label='main graph')
-    plt.hist(degree_sequence_left_side, alpha=0.5, label='left side')
-    plt.hist(degree_sequence_right_side, alpha=0.5, label='right side')
-    plt.legend(loc='upper right')
-    plt.show()
+import collections
+(main_graph, left_side, right_side) = three_graph(snapshots[34], 'reply')
+degree_sequence_main = sorted([d for n, d in main_graph.degree()], reverse=True)
+degree_count_main = collections.Counter(degree_sequence_main)
+deg_main, cnt_main = zip(*degree_count_main.items())
+cnt_main = list(cnt_main)
+deg_main = list(deg_main)
+degree_sequence_left_side = sorted([d for n, d in left_side.degree()], reverse=True)
+degree_count_left = collections.Counter(degree_sequence_left_side)
+deg_left, cnt_left = zip(*degree_count_left.items())
+cnt_left = list(cnt_left)
+deg_left = list(deg_left)
+degree_sequence_right_side = sorted([d for n, d in right_side.degree()], reverse=True)
+degree_count_right = collections.Counter(degree_sequence_right_side)
+deg_right, cnt_right = zip(*degree_count_right.items())
+cnt_right = list(cnt_right)
+deg_right = list(deg_right)
+#fig, ax = plt.subplots()
+a = plt.scatter(deg_main, cnt_main, color='b')
+b = plt.scatter(deg_left, cnt_left, color='g')
+c = plt.scatter(deg_right, cnt_right, color='r')
+plt.xscale('log')
+plt.yscale('log')
+plt.xlim(0,10000)
+plt.ylim(0.1,1000)
+plt.legend((a, b, c), ('main', 'left', 'right'))
+plt.savefig('beefban reply snapshot 34')
+plt.clf()
 
-# dd = degree_distribution(snapshot[0], 'mention')
+# this function returns specified centrality measure in a snapshot
+# snapshot = snapshots[34]
+def centrality(snapshot, centrality_measure, graph_type=None):
+    if graph_type is not None:
+        (main_graph, left_side, right_side) = three_graph(snapshot, graph_type)
+        if centrality_measure == 'betweenness':
+            centraliy_main = nx.betweenness_centrality(main_graph)
+            centraliy_left = nx.betweenness_centrality(left_side)
+            centraliy_right = nx.betweenness_centrality(right_side)
+        elif centrality_measure == 'eigenvector':
+            centraliy_main = nx.eigenvector_centrality(main_graph)
+            centraliy_left = nx.eigenvector_centrality(left_side)
+            centraliy_right = nx.eigenvector_centrality(right_side)
+        elif centrality_measure == 'closeness':
+            centraliy_main = nx.closeness_centrality(main_graph)
+            centraliy_left = nx.closeness_centrality(left_side)
+            centraliy_right = nx.closeness_centrality(right_side)
+        return tuple((centraliy_main, centraliy_left, centraliy_right))
+
+c = []
+iter = 0
+for item in snapshots[44:]:
+    print(iter)
+    c.append(centrality(item, 'closeness', graph_type = 'retweet'))
+    iter += 1
