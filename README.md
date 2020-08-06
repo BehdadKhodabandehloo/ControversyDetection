@@ -32,7 +32,9 @@ Papers that would be read:
 Task that would be done:
   -  Report degree distribution and other structure measures in reply, mention and retweet graph dynamically and report this on two part of the polarized network(Behdad)
   -  Report plorization measures on mention and reply graph(Mehrdad)
-  
+
+# Questions to be answered:
+
 # Future Ideas:
 in progressing ideas for polarization quantifying:
 - Prediction Controversy
