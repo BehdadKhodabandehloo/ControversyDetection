@@ -3,11 +3,13 @@ from utils.utils import *
 import copy
 
 
-def graph_maker(heads, tails, texts=None, graph=None):
+def graph_maker(heads, tails, texts=None, graph=None, directed=False):
     # graph initiate
     if graph is None:
-        # graph = nx.DiGraph()
-        graph = nx.Graph()
+        if directed:
+            graph = nx.DiGraph()
+        else:
+            graph = nx.Graph()
     if texts is not None:
         for i in range(len(heads)):
             if graph.has_edge(tails[i], heads[i]):
@@ -25,7 +27,7 @@ def graph_maker(heads, tails, texts=None, graph=None):
     return graph
     
     
-def static_reply_graph(data, sentiment=False, graph=None):
+def static_reply_graph(data, sentiment=False, graph=None, directed=False):
     orginal_usernames = []
     reply_usernames = []
     texts = None
@@ -39,10 +41,10 @@ def static_reply_graph(data, sentiment=False, graph=None):
                 if sentiment:
                     texts.append(item['full_text'])
 
-    return graph_maker(orginal_usernames, reply_usernames, texts, graph)
+    return graph_maker(orginal_usernames, reply_usernames, texts, graph, directed)
 
 
-def static_mention_graph(data, sentiment=False, graph=None):
+def static_mention_graph(data, sentiment=False, graph=None, directed=False):
     tails = [] 
     heads = []
     texts = None
@@ -61,10 +63,10 @@ def static_mention_graph(data, sentiment=False, graph=None):
                     heads.append(item['entities']['user_mentions'][k]['id'])
                 if sentiment:
                     texts.append(item['full_text'])
-    return graph_maker(heads, tails, texts, graph)   
+    return graph_maker(heads, tails, texts, graph, directed)
     
     
-def static_retweet_graph(data, graph=None, sentiment=False):
+def static_retweet_graph(data, graph=None, sentiment=False, directed=False):
     heads = []
     tails = []
     texts = None
@@ -74,7 +76,7 @@ def static_retweet_graph(data, graph=None, sentiment=False):
                 heads.append(item['retweeted_status']['user']['id'])
                 tails.append(item['user']['id'])
             
-    return graph_maker(heads, tails, texts, graph)
+    return graph_maker(heads, tails, texts, graph, directed)
 
 
 def dynamic_graph(data, graph_type='retweet', discrete_bin=3600, sentiment=False, cumulative=True):
@@ -129,6 +131,3 @@ if __name__ == '__main__':
         print('%s. graph (%s) --> nodes = %s, edges = %s' % (count, key, len(graph.nodes), len(graph.edges)))
         count += 1
     print(len(graphs))
-
-
-graphs = dynamic_graph(dataset, graph_type='reply', cumulative=False)

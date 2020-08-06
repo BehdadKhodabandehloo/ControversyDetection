@@ -1,5 +1,4 @@
 import networkx as nx
-import nxmetis
 from scipy import stats
 import random
 import numpy as np
@@ -36,31 +35,15 @@ def seprate_graph_with_betweenness(seprated_graph, betweeenes_edges):
     return cut_edges, rest_edges
 
 
-"""
-if __name__ == '__main__':
-    file = 'baltimore_data'
-    dataloader = Dataloader('path)
-    dataset = dataloader.load_files(file, 10000)
-    print(len(dataset))
-    print(dataset[0])
-"""
-
-
 def roulette_wheel_selection(List):
     L = []
     r = random.random()
-    print(r)
+    # print(r)
     for i in range(len(List)):
         L.append(List[i])
         if r <= sum(L):
             return i
 
-
-# graph = static_retweet_graph(dataset)
-# Graph partitioning
-g = graph
-h = g.to_undirected()
-partitions = nxmetis.partition(h, 2)
 
 def random_walk_conteroversy(graph, partitions, iterations):
     # Adjacency Matrix
@@ -142,3 +125,12 @@ def random_walk_conteroversy(graph, partitions, iterations):
     rwc_score = separate / iterations
 
     return rwc_score
+
+"""
+if __name__ == '__main__':
+    file = 'baltimore_data'
+    dataloader = Dataloader('path)
+    dataset = dataloader.load_files(file, 10000)
+    print(len(dataset))
+    print(dataset[0])
+"""
